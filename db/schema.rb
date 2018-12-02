@@ -10,10 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_02_014008) do
+ActiveRecord::Schema.define(version: 2018_12_02_035348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "destinations", force: :cascade do |t|
+    t.string "g_places_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.text "img_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pins", force: :cascade do |t|
+    t.bigint "photo_id"
+    t.bigint "user_id"
+    t.bigint "trip_id"
+    t.bigint "destination_id"
+    t.text "caption"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destination_id"], name: "index_pins_on_destination_id"
+    t.index ["photo_id"], name: "index_pins_on_photo_id"
+    t.index ["trip_id"], name: "index_pins_on_trip_id"
+    t.index ["user_id"], name: "index_pins_on_user_id"
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_trips_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +57,14 @@ ActiveRecord::Schema.define(version: 2018_12_02_014008) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "pins", "destinations"
+  add_foreign_key "pins", "photos"
+  add_foreign_key "pins", "trips"
+  add_foreign_key "pins", "users"
+  add_foreign_key "trips", "users"
 end
