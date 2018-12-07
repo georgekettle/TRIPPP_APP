@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import Masonry from 'react-masonry-component';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchPins } from '../actions';
+
+const masonryOptions = {
+    transitionDuration: 0
+};
 
 class PinList extends Component {
   componentWillMount() {
@@ -9,14 +14,10 @@ class PinList extends Component {
   }
 
   renderPin = (pin) => {
-    console.log(pin);
     let imgUrl = pin["photo"]["img_url"];
-    let divStyle = {
-      backgroundImage: 'url(' + imgUrl + ')'
-    };
     return (
       <div className="pin-card">
-        <div style={divStyle} className="pin-photo"></div>
+        <img src={imgUrl} alt={pin["caption"]} className="pin-photo"/>
         <h4>{pin["caption"]}</h4>
       </div>
     )
@@ -24,9 +25,14 @@ class PinList extends Component {
 
   render() {
     return (
-      <div className="pin-list">
+      <Masonry
+          className={'pin-list'} // default ''
+          options={masonryOptions} // default {}
+          disableImagesLoaded={false} // default false
+          updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
+      >
         {this.props.pins.map(this.renderPin)}
-      </div>
+      </Masonry>
     );
   }
 }

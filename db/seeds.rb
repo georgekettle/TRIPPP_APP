@@ -1,40 +1,40 @@
 photos = [
-  'https://notanomadblog.com/images/travel/tenerife/las-teresitas-portrait.jpg',
-  'https://notanomadblog.com/images/travel/tenerife/santa-cruz.jpg',
-  'https://notanomadblog.com/images/travel/tenerife/las-teresitas-view.jpg',
-  'https://notanomadblog.com/images/travel/tenerife/tapas-bar-food.jpg',
-  'https://notanomadblog.com/images/travel/tenerife/anaga-hike.jpg',
-  'https://notanomadblog.com/images/travel/tenerife/benijo-hike.jpg',
-  'https://notanomadblog.com/images/travel/tenerife/restaurante-el-mirador-benijo.jpg',
-  'https://notanomadblog.com/images/travel/tenerife/las-carboneras.jpg',
-  'https://notanomadblog.com/images/travel/tenerife/la-orotava-botanical-garden-back-2.jpg',
-  'https://notanomadblog.com/images/travel/tenerife/casa-de-los-balcones.jpg',
-  'https://notanomadblog.com/images/travel/tenerife/punta-de-teno-2.jpg',
-  'https://notanomadblog.com/images/travel/tenerife/masca.jpg',
-  'https://notanomadblog.com/images/travel/tenerife/los-cristianos-beach.jpg',
-  'https://notanomadblog.com/images/travel/tenerife/los-gigantes.jpg'
+  'https://i.pinimg.com/564x/d8/68/ce/d868ce27acd05074251cfdaf7b435c67.jpg',
+  'https://i.pinimg.com/564x/6a/65/27/6a6527f3a66e8b44a39468affc97b632.jpg',
+  'https://i.pinimg.com/originals/f1/f5/8d/f1f58d0c3d5f15b4b692f981bb1936eb.jpg',
+  'https://i.pinimg.com/originals/72/6b/3d/726b3d01be3232a87e6f28cda97bb8cd.jpg',
+  'https://1.bp.blogspot.com/-Dxty4wI0PH8/W4BI0HUW3mI/AAAAAAAAbTw/ul8qJWvp1HkW5MEPddpi6KZ6KzOxbNgYwCLcBGAs/s1600/2018-08-24_0002.jpg',
+  'https://1.bp.blogspot.com/-y5Gsv6IKWXw/W37h63eMmuI/AAAAAAAAbR8/KO6VFBue9IEbkbkaC8vEQ2_BPJYxySq3gCLcBGAs/s1600/2018-08-23_0007.jpg',
+  'https://4.bp.blogspot.com/-WmuWQHav76I/W38Yma3DFBI/AAAAAAAAbTc/7pJZiCJ1ZQkHNPZwJjV1CwVYdi62FVrewCLcBGAs/s1600/2018-08-23_0023.jpg',
+  'https://i.pinimg.com/564x/25/ff/b7/25ffb725b427180527ece3e4b268a0c1.jpg',
+  'https://4.bp.blogspot.com/-9-gSiciy8vY/W4BI0VsXw0I/AAAAAAAAbT0/1UD-Whz6ckk9dwWO72CIzuwT7ue6G9n0gCLcBGAs/s1600/2018-08-24_0004.jpg',
+  'https://2.bp.blogspot.com/-RryfmPScOVM/W4BI1urY-yI/AAAAAAAAbUQ/r2E58VDVKXAEpI-RflPYsiElNSHhfJKjgCLcBGAs/s1600/2018-08-24_0011.jpg',
+  'https://i.pinimg.com/564x/50/c5/cc/50c5cc1317a87cd447dff87caba7e9af.jpg',
+  'https://3.bp.blogspot.com/-o_TWQUVsNIY/W4BI11WVqnI/AAAAAAAAbUY/MAoaarvK4YoLZs3yMN718hTVhRpe3PGbwCLcBGAs/s1600/2018-08-24_0013.jpg',
+  'https://2.bp.blogspot.com/-ugEN91Q1VcI/W37h--9UU3I/AAAAAAAAbS4/r2JGE6hht7A-9IS6mMWeVh116Zc-s8VygCLcBGAs/s1600/2018-08-23_0022.jpg',
+  'https://1.bp.blogspot.com/-JR8TMaK6pcc/W37h7sm-TeI/AAAAAAAAbSI/NiyNMJEx3vshBvIItx3gq4eXpED4NSYYgCLcBGAs/s1600/2018-08-23_0010.jpg'
 ]
 
 captions = [
-  'There are a few main “party cities” in the Southwest of Tenerife',
-  'day on the beach in Los Cristianos',
-  'stunning canyons surrounding Masca',
-  'one of Tenerife’s must-see villages',
-  'the most western point in Tenerife',
-  'the staple Spanish-style church',
-  'the oldest tree on Tenerife',
-  'Did you know that the wines of Tenerife were once some of the most sought after in Europe?',
-  'Porto de la Cruz has a lovely stretch along the sea',
-  'Puerto de la Cruz is a cute, beachfront city',
-  'There are a lot of small villages in this area',
-  'In the distance you can see Taganana',
-  'El Teide is Spain’s highest mountain and volcano',
-  'Parque Natural de Anaga'
+  'There is nothing more magical than the Italian coast',
+  'This trip we were based in Positano',
+  'Day trip to Capri',
+  'Cole and I had a lovely morning in Positano',
+  'Alongside the "faraglioni"',
+  'Da Luigi is right next to another beach club',
+  'Some much needed R&R',
+  'Boat ride around the entire island of Capri',
+  'Something fun and surprising in Capri was the amount of designer shopping',
+  'Long story short, put Capri on the top of your list',
+  'Such fun walk with some stunning views throughout the city',
+  'Towering rock formations created by wave erosion',
+  'Peak of summer',
+  'A week in paradise with my husband'
 ]
 
 trips = [
-  'Beaches in Tenerife',
-  'Photographers guide to Tenerife'
+  'A Day in Capri',
+  'Italian Boating'
 ]
 
 destinations = [
