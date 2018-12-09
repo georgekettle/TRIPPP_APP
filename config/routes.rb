@@ -7,7 +7,9 @@ Rails.application.routes.draw do
       end
     end
   end
-  get "profile/:user_name/:tab", to: "trips#show"
+  get "pin/:pin_id", to: "pins#show", as: 'pin'
+  get "profile/:user_name", to: "profile#show", as: 'profile'
+  get "profile/:user_name/:tab", to: "profile#show"
   resources :trips, only: [ :show ]
   root to: 'trips#show'
 

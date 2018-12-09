@@ -7,15 +7,18 @@ import { selectTab } from '../actions/index';
 const tabs = ['guides', 'pins'];
 
 class TabsList extends Component {
-  // handleClick = (tab) => {
-  //   this.props.selectTab(tab); // Will empty message list first
-  //   // this.props.fetchMessages(channel);
-  // }
+  defineSelectedTab = (value) => {
+    if (typeof(value) !== 'undefined' || value != null) {
+      return value
+    } else {
+      return 'guides'
+    }
+  }
 
   renderTab = (tab) => {
     return(
       <li
-        className={tab === this.props.selectedTab ? 'tab selected-tab' : 'tab'}
+        className={tab === this.defineSelectedTab(this.props.selectedTab) ? 'tab selected-tab' : 'tab'}
         key={tab}
         // onClick={() => this.handleClick(tab)}
       >

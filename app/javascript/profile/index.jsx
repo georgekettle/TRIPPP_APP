@@ -7,7 +7,7 @@ import logger from 'redux-logger'
 import ReduxPromise from 'redux-promise';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import App from './components/app';
+import Profile from './components/profile';
 import pinsReducer from './reducers/pins_reducer';
 import tripsReducer from './reducers/trips_reducer';
 
@@ -52,7 +52,8 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route path="/profile/:user_name/:tab" component={App} />
+        <Route path="/profile/:user_name/:tab" component={Profile} />
+        <Route path="/profile/:user_name" component={Profile} />
       </Switch>
     </BrowserRouter>
   </Provider>,
