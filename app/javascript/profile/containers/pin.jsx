@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
+
 import { createPin } from '../actions';
 
 const selectOptions = [
@@ -56,6 +58,7 @@ class Pin extends Component {
 
   render() {
     let imgUrl = this.props.pinData["photo"]["img_url"];
+    let pin_id = this.props.pinData["id"];
     return (
       <div className="pin-card">
         <div className="guide-select">
@@ -83,7 +86,9 @@ class Pin extends Component {
           <button className="guide-select-submit" onClick={this.handleSubmit}>Save</button>
         </div>
         <img src={imgUrl} alt={this.props.pinData["caption"]} className="pin-photo"/>
-        <h4 className="pin-caption">{this.props.pinData["caption"]}</h4>
+        <a href={`http://localhost:3000/pins/${pin_id}`}>
+          <h4 className="pin-caption">{this.props.pinData["caption"]}</h4>
+        </a>
       </div>
     )
   }

@@ -34,3 +34,18 @@ ul {
   -webkit-margin-before: 0px;
   -webkit-padding-start: 0px;
 }
+
+input[type="file"] {
+    display: none;
+}
+
+::placeholder {
+  color: $gray
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}

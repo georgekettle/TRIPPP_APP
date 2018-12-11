@@ -1,0 +1,118 @@
+.new-pin-container {
+  display: flex;
+  justify-content: center;
+  padding: 50px 20%;
+}
+
+.upload-photo-left-container {
+  flex: 0 0 33%;
+}
+
+.pin-upload-label {
+  background-color: $light-gray;
+  height: 40vh;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-plus {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: white;
+  transition: all 0.1s ease;
+}
+
+.pin-upload-label:hover .upload-plus{
+  width: 60px;
+  height: 60px;
+}
+
+.save-from-site {
+  width: 100%;
+  height: 50px;
+  background-color: $light-gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+// RIGHT SIDE UPLOAD INFO
+
+.upload-photo-right-container {
+  padding-left: 20px;
+  flex: 0 0 67%;
+}
+
+.title-input {
+  width: 100%;
+  height: 60px;
+  border: none;
+  display: block;
+  font-size: 3em;
+  font-weight: 800;
+  font-family: 'Montserrat';
+  letter-spacing: -1px;
+  color: $charcoal;
+  resize: none;
+}
+
+.pin-user {
+  background-color: white;
+  height: 50px;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px;
+  padding-right: 20px;
+  border-radius: 25px;
+  margin: 15px;
+  margin-left: -5px;
+  transition: all 0.1s ease;
+  &:hover {
+    background-color: $bg-gray;
+  }
+}
+
+.pin-user-avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+}
+
+.pin-user-info {
+  margin-left: 10px;
+}
+
+.pin-user-name {
+  font-size: 1em;
+  font-weight: 800;
+  margin: 0px;
+}
+
+.pin-user-nationality {
+  font-size: 0.8em;
+  font-weight: 500;
+  margin: 0px;
+}
+
+.caption-input {
+  width: 100%;
+  border: none;
+  display: block;
+  font-size: 1em;
+  font-weight: 400;
+  font-family: 'Montserrat';
+  letter-spacing: -0.5px;
+  color: $charcoal;
+  resize: none;
+}
+

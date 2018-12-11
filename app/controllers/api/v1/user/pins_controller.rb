@@ -1,5 +1,9 @@
-class Api::V1::PinsController < ApplicationController
-  def new
+class Api::V1::User::PinsController < ApplicationController
+  before_action :set_user_name
+
+  def index
+    pins = @user.pins.order('created_at ASC')
+    render :json => pins, :include => {:photo => {:only => :img_url}}, :except => [:created_at, :updated_at]
   end
 
   def create
@@ -13,14 +17,9 @@ class Api::V1::PinsController < ApplicationController
     render json: pin, :include => {:photo => {:only => :img_url}}, :except => [:created_at, :updated_at]
   end
 
-  def edit
-  end
+  private
 
-  def show
-    pin = Pin.find(params[:id])
-    render json: pin, :include => {:photo => {:only => :img_url}}, :except => [:created_at, :updated_at]
-  end
-
-  def update
+  def set_user_name
+    @user = User.find_by(user_name: params[:user_id])
   end
 end

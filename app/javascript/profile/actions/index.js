@@ -26,7 +26,7 @@ export function fetchPins(user_name) {
 
 export function createPin(user_name, photo_id, trip_id, destination_id, caption) {
   // user_name is irrelevant, could possibly change api call for creating pins
-  const url = `${BASE_URL}/users/${user_name}/pins`;
+  const url = `${BASE_URL}/pins`;
   const body = { photo_id, trip_id, destination_id, caption };
   console.log("This is the body");
   console.log(body);

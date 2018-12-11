@@ -7,9 +7,7 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Host", "#", class: "navbar-item navbar-link" %>
-      <%= link_to "Trips", "#", class: "navbar-item navbar-link" %>
-      <%= link_to "Messages", "#", class: "navbar-item navbar-link" %>
+      <%= link_to "Create Pin", new_pin_path, class: "navbar-item navbar-link" %>
 
       <%= link_to profile_path(current_user.user_name) do %>
         <%= image_tag "https://instagram.fsyd5-1.fna.fbcdn.net/vp/a5a9e47acd796e82b4ae6b119dc98a71/5C938829/t51.2885-19/s320x320/44518843_273689646684456_8468654155899076608_n.jpg?_nc_ht=instagram.fsyd5-1.fna.fbcdn.net", height: 42, class: "avatar" %>
