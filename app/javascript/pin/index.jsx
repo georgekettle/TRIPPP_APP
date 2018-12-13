@@ -10,10 +10,14 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Pin from './containers/pin';
 import CreatePin from './containers/create_pin';
 import pinsReducer from './reducers/pins_reducer';
+import photosReducer from './reducers/photos_reducer';
 
 const pinContainer = document.getElementById('pin');
+const currentUser = JSON.parse(pinContainer.dataset.currentuser)
 
 const initialState = {
+  selectedPhoto: {},
+  currentUser: currentUser,
   selectedPin: {
     caption: "This trip we were based in Positano",
     destination_id: 1,
@@ -28,7 +32,9 @@ const initialState = {
 };
 
 const reducers = combineReducers({
-  selectedPin: pinsReducer
+  selectedPin: pinsReducer,
+  selectedPhoto: photosReducer,
+  currentUser: (state = null, action) => state
 });
 
 const middlewares = applyMiddleware(logger, ReduxPromise);

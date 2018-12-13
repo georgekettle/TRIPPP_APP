@@ -1,2 +1,7 @@
-<div id="pin"></div>
+<% if current_user %>
+  <div id="pin" data-currentuser="<%= current_user.to_json %>"></div>
+<% else %>
+  <div id="pin"></div>
+<% end %>
+
 <%= javascript_pack_tag "pin" %>

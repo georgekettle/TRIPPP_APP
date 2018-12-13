@@ -49,3 +49,15 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+
+button {
+  border: none;
+  font-family: 'Montserrat';
+  font-weight: 700;
+  border-radius: 4px;
+  background-color: $yellow;
+  color: white;
+  font-size: 0.8em;
+  padding: 10px 20px;
+  cursor: pointer;
+}

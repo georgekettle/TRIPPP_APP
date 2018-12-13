@@ -1,22 +1,30 @@
 .new-pin-container {
-  display: flex;
-  justify-content: center;
   padding: 50px 20%;
 }
 
-.upload-photo-left-container {
-  flex: 0 0 33%;
+.new-pin-form {
+  display: flex;
+  justify-content: center;
+}
+
+.upload-pin-left-container {
+  flex: 0 0 40%;
 }
 
 .pin-upload-label {
   background-color: $light-gray;
-  height: 40vh;
   width: 100%;
   cursor: pointer;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.uploaded-img {
+  width: 100%;
 }
 
 .upload-plus {
@@ -46,9 +54,9 @@
 
 // RIGHT SIDE UPLOAD INFO
 
-.upload-photo-right-container {
+.upload-pin-right-container {
   padding-left: 20px;
-  flex: 0 0 67%;
+  flex: 0 0 60%;
 }
 
 .title-input {
@@ -114,5 +122,12 @@
   letter-spacing: -0.5px;
   color: $charcoal;
   resize: none;
+}
+
+// SUBMIT BUTTON
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
 }
 

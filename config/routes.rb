@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       end
       resources :pins, only: [ :show, :new, :create, :edit, :update ]
       resources :trips, only: [ :show, :new, :create, :edit, :update ]
+      resources :photos, only: [ :create ]
     end
   end
   get "pins/new", to: "pins#show", as: 'new_pin'
