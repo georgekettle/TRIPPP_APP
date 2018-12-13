@@ -17,18 +17,39 @@
 
 /* User Avatar */
 .navbar .avatar {
-  height: 36px;
-  width: 36px;
+  height: 31px;
+  width: 31px;
   border-radius: 50%;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
   border: 2px solid white;
-  margin-bottom: 0px;
   transition: all 0.1s ease;
+  &:hover {
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.25);
+    height: 36px;
+    width: 36px;
+    background-color: $yellow;
+  }
 }
 
-.avatar:hover {
-  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.25);
-  margin-bottom: 1px;
+// Plus Icon (Create New)
+.navbar-create-div {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $light-gray;
+  transition: all 0.1s ease;
+  &:hover {
+    height: 36px;
+    width: 36px;
+    background-color: $yellow;
+  }
+}
+
+.plus-icon {
+  height: 51%;
 }
 
 /* Right section */
@@ -41,7 +62,11 @@
 /* Basic navbar item */
 .navbar-item {
   cursor: pointer;
-  padding-right: 20px;
+  padding-right: 0px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Navbar link */
