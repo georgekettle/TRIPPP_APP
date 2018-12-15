@@ -13,16 +13,16 @@ const selectOptions = [
 ]
 
 const style = {
-    control: (base, state) => ({
-      ...base,
-      border: state.isFocused ? 0 : 0,
-      // This line disable the blue border
-      boxShadow: state.isFocused ? 0 : 0,
-      "&:hover": {
-        border: state.isFocused ? 0 : 0
-      }
-    })
-  };
+  control: (base, state) => ({
+    ...base,
+    border: state.isFocused ? 0 : 0,
+    // This line disable the blue border
+    boxShadow: state.isFocused ? 0 : 0,
+    "&:hover": {
+      border: state.isFocused ? 0 : 0
+    }
+  })
+};
 
 class Pin extends Component {
   constructor(props) {
