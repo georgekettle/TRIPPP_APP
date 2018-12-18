@@ -85,9 +85,9 @@ class Pin extends Component {
           />
           <button className="guide-select-submit" onClick={this.handleSubmit}>Save</button>
         </div>
-        <img src={imgUrl} alt={this.props.pinData["caption"]} className="pin-photo"/>
+        <img src={imgUrl} alt={this.props.pinData["title"]} className="pin-photo"/>
         <a href={`http://localhost:3000/pins/${pin_id}`}>
-          <h4 className="pin-caption">{this.props.pinData["caption"]}</h4>
+          <h4 className="pin-caption">{this.props.pinData["title"]}</h4>
         </a>
       </div>
     )

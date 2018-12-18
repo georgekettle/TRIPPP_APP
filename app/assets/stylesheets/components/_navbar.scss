@@ -4,10 +4,13 @@
   transition: all 0.3s ease;
   height: 70px;
   padding: 0px 30px;
+  position: sticky;
+  top: 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: solid 0.5px $light-gray;
+  z-index: 100;
 }
 
 /* Logo */

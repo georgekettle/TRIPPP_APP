@@ -32,6 +32,8 @@ captions = [
   'A week in paradise with my husband'
 ]
 
+user_photo = "https://instagram.fsyd5-1.fna.fbcdn.net/vp/a5a9e47acd796e82b4ae6b119dc98a71/5C938829/t51.2885-19/s320x320/44518843_273689646684456_8468654155899076608_n.jpg?_nc_ht=instagram.fsyd5-1.fna.fbcdn.net"
+
 trips = [
   'A Day in Capri',
   'Italian Boating'
@@ -41,9 +43,11 @@ destinations = [
   'ChIJ7YKG_u8pQAwRPK9LyPFLGrA'
 ]
 
+description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 Destination.create(g_places_id: destinations[0])
 
-User.create(email: 'george.kettle@icloud.com', password: '1234567', user_name: 'george')
+User.create(email: 'george.kettle@icloud.com', password: '1234567', user_name: 'tessa_amberly', photo: user_photo)
 
 trips.each do |trip|
   Trip.create(title: trip, user_id: 1)
@@ -51,5 +55,5 @@ end
 
 photos.each_with_index do |photo, index|
   new_photo = Photo.create(img_url: photo)
-  Pin.create(photo_id: new_photo.id, user_id: 1, trip_id: rand(1..2), destination_id: 1, caption: captions[index])
+  Pin.create(photo_id: new_photo.id, url: photo, user_id: 1, trip_id: rand(1..2), destination_id: 1, title: captions[index], caption: description)
 end

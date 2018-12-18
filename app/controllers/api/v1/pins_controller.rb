@@ -8,7 +8,9 @@ class Api::V1::PinsController < ApplicationController
       user_id: current_user.id,
       trip_id: params[:trip_id],
       destination_id: params[:destination_id],
-      caption: params[:caption]
+      title: params[:title],
+      caption: params[:description],
+      url: params[:pin_url]
     )
     render json: pin, :include => {:photo => {:only => :img_url}}, :except => [:created_at, :updated_at]
   end
@@ -18,7 +20,8 @@ class Api::V1::PinsController < ApplicationController
 
   def show
     pin = Pin.find(params[:id])
-    render json: pin, :include => {:photo => {:only => :img_url}}, :except => [:created_at, :updated_at]
+    render json: pin, :include => {:photo => {:only => :img_url}, :user => {:only => [:user_name, :photo]}, :trip => {:only => :title}}
+    #{:photo => {:only => :img_url}}, :except => [:created_at, :updated_at]
   end
 
   def update
