@@ -1,0 +1,84 @@
+.pin-list {
+  width: calc(80% + 20px);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pin-card {
+  width: 25%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: all 0.1s ease;
+  &:hover {
+    background-color: $light-gray;
+  }
+}
+
+.pin-card:hover .guide-select {
+  display: flex;
+}
+
+.guide-select {
+  position: absolute!important;
+  top: 0px;
+  left: 0px;
+  width: calc(100% - 40px);
+  z-index: 1;
+  margin: 20px;
+  padding-bottom: 0px;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-size: 0.7em;
+  display: none;
+}
+
+.guide-select-submit {
+  width: 30%;
+  background-color: #FFC245;
+  border: none;
+  border-radius: 0px 2px 2px 0px;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Montserrat';
+  font-size: 1.1em;
+}
+
+.css-du6efa {
+  border-radius: 2px 0px 0px 2px!important;
+  &:focus {
+    border-radius: 2px 0px 0px 2px!important;
+  }
+}
+
+.css-10nd86i {
+  width: 70%;
+}
+
+.css-d8oujb {
+  display: none;
+}
+
+.pin-photo {
+  width: 100%;
+  border-radius: 4px;
+  filter: brightness(100%);
+}
+
+.pin-card:hover .pin-photo {
+  filter: brightness(70%);
+  transition: all 0.1s ease;
+}
+
+.pin-caption {
+  font-family: 'Space Mono';
+  font-weight: 700;
+  padding: 0px 5px;
+  letter-spacing: -0.5px;
+  word-spacing: -2px;
+  line-height: 1.2em;
+}

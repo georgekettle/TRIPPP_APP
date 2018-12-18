@@ -1,0 +1,63 @@
+body {
+  margin: 0px;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+a {
+  color: $gray;
+  text-decoration: none;
+  font-family: $headers-font;
+  &:hover {
+    color: $charcoal;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $headers-font;
+  color: $charcoal;
+  margin: 8px 0px;
+}
+
+h4 {
+  font-size: 0.8em;
+}
+
+p {
+  font-family: $body-font;
+  color: $charcoal;
+}
+
+ul {
+  -webkit-margin-before: 0px;
+  -webkit-padding-start: 0px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+::placeholder {
+  color: $gray
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+button {
+  border: none;
+  font-family: 'Montserrat';
+  font-weight: 700;
+  border-radius: 4px;
+  background-color: $yellow;
+  color: white;
+  font-size: 0.8em;
+  padding: 10px 20px;
+  cursor: pointer;
+}

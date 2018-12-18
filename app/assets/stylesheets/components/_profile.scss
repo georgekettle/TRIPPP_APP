@@ -1,0 +1,54 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+}
+
+.profile-summary {
+  font-family: $headers-font;
+  height: 200px;
+  width: 80%;
+  background-color: $bg-gray;
+  border-radius: 4px;
+  border: 0.5px solid #e2e2e2;
+  margin-bottom: 20px;
+}
+
+.profile-avatar {
+  width: 200px;
+  margin-bottom: -80px;
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0px 2px 20px rgba(0,0,0,0.1);
+}
+
+.tab {
+  display: inline-block;
+  margin: 0px 2px;
+  font-weight: 700;
+  text-transform: capitalize;
+  cursor: pointer;
+  padding: 10px 20px;
+  &:hover {
+    background-color: $bg-gray;
+    border-radius: 5px;
+  }
+}
+
+.tab:hover a {
+  color: $charcoal;
+}
+
+.tab a {
+  font-family: $headers-font;
+}
+
+.selected-tab {
+  background-color: $bg-gray;
+  border-radius: 5px;
+}
+
+.selected-tab a {
+  color: $charcoal;
+}

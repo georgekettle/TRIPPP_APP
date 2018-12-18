@@ -1,0 +1,1 @@
+import '../pin/index.jsx';
