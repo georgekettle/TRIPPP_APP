@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Group Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M1.6763223,0.583145951 L0.275893277,6.74184783 C0.272690443,6.75593301 0.272577067,6.77054488 0.275560949,6.78467806 L1.6759869,13.4178081 C1.68739557,13.4718453 1.74044999,13.5064026 1.79448726,13.494994 C1.83336154,13.4867866 1.86368961,13.456344 1.87175036,13.417439 L3.24607755,6.78429489 C3.24895475,6.7704082 3.24884537,6.75606836 3.24575668,6.74222717 L1.87143256,0.58353944 C1.85940406,0.529636753 1.80595628,0.495691016 1.75205359,0.507719514 C1.71436368,0.516130095 1.68488484,0.545490277 1.6763223,0.583145951 Z" id="path-1"></path>
+    </defs>
+    <g id="Moment" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD-Copy-48" transform="translate(-407.000000, -1054.000000)">
+            <g id="Group" transform="translate(-1.000000, 1046.000000)">
+                <g id="Group-Copy" transform="translate(409.000000, 9.000000)">
+                    <circle id="Oval" stroke="#434343" fill-rule="nonzero" cx="9" cy="9" r="9"></circle>
+                    <g id="Rectangle" transform="translate(9.273205, 8.926795) rotate(-330.000000) translate(-9.273205, -8.926795) translate(7.273205, 1.926795)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Mask" stroke="#434343" fill-rule="nonzero" xlink:href="#path-1"></use>
+                        <rect fill="#434343" fill-rule="nonzero" mask="url(#mask-2)" x="-0.6" y="6.88695652" width="4.8" height="7.51304348"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

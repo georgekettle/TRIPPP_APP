@@ -10,7 +10,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PinShow from './containers/pin_show';
 import CreatePin from './containers/create_pin';
 import pinsReducer from './reducers/pins_reducer';
+import pinsListReducer from './reducers/pins_list_reducer';
 import photosReducer from './reducers/photos_reducer';
+import pinHoverReducer from './reducers/pin_hover_reducer';
 
 const pinContainer = document.getElementById('pin');
 const currentUser = JSON.parse(pinContainer.dataset.currentuser)
@@ -21,6 +23,11 @@ const initialState = {
   selectedPin: {
     caption: "This trip we were based in Positano",
     destination_id: 1,
+    destination: {
+      g_places_id: "ChIJ7YKG_u8pQAwRPK9LyPFLGrA",
+      latitude: 40.5532,
+      longitude: 14.2222
+    },
     id: 2,
     photo: {
       img_url: "https://i.pinimg.com/564x/6a/65/27/6a6527f3a66e8b44a39468affc97b632.jpg"
@@ -39,8 +46,10 @@ const initialState = {
 };
 
 const reducers = combineReducers({
+  pins: pinsListReducer,
   selectedPin: pinsReducer,
   selectedPhoto: photosReducer,
+  hoveredPin: pinHoverReducer,
   currentUser: (state = null, action) => state
 });
 

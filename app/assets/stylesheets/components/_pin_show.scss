@@ -8,11 +8,12 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  padding: 50px;
+  padding-bottom: 70px;
 }
 
 .pin-show-content {
   flex: 0 0 67%;
-  padding: 50px;
 }
 
 .pin-show-photo {
@@ -21,7 +22,6 @@
 
 .pin-show-information {
   width: calc(50% - 15px);
-  height: 1000px;
 }
 
 .pin-show-guide-select {
@@ -109,10 +109,10 @@
 // MAP
 .pin-show-map {
   flex: 0 0 33%;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 60px);
   background-color: $light-gray;
   position: sticky;
-  top: 70px;
-  background-image: url("https://static01.nyt.com/newsgraphics/2015/02/25/ny-geo-quiz/assets/greaternyc_x.png");
+  top: 60px;
+  // background-image: url("https://static01.nyt.com/newsgraphics/2015/02/25/ny-geo-quiz/assets/greaternyc_x.png");
   background-size: cover;
 }

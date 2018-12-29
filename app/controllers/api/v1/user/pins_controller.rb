@@ -3,7 +3,7 @@ class Api::V1::User::PinsController < ApplicationController
 
   def index
     pins = @user.pins.order('created_at ASC')
-    render :json => pins, :include => {:photo => {:only => :img_url}}, :except => [:created_at, :updated_at]
+    render json: pins, :include => {:photo => {:only => :img_url}, :user => {:only => [:user_name, :photo]}, :trip => {:only => :title}, :destination => {:only => [:g_places_id, :latitude, :longitude]}}
   end
 
   def create

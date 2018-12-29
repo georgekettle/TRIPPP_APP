@@ -12,7 +12,7 @@ class Api::V1::PinsController < ApplicationController
       caption: params[:description],
       url: params[:pin_url]
     )
-    render json: pin, :include => {:photo => {:only => :img_url}}, :except => [:created_at, :updated_at]
+    render json: pin, :include => {:photo => {:only => :img_url}, :user => {:only => [:user_name, :photo]}, :trip => {:only => :title}, :destination => {:only => [:g_places_id, :latitude, :longitude]}}
   end
 
   def edit
@@ -20,7 +20,7 @@ class Api::V1::PinsController < ApplicationController
 
   def show
     pin = Pin.find(params[:id])
-    render json: pin, :include => {:photo => {:only => :img_url}, :user => {:only => [:user_name, :photo]}, :trip => {:only => :title}}
+    render json: pin, :include => {:photo => {:only => :img_url}, :user => {:only => [:user_name, :photo]}, :trip => {:only => :title}, :destination => {:only => [:g_places_id, :latitude, :longitude]}}
     #{:photo => {:only => :img_url}}, :except => [:created_at, :updated_at]
   end
 
