@@ -14,12 +14,16 @@ class MapMarker extends Component {
   }
 
   render() {
-    console.log("onHover true?");
-    console.log(this.props);
-    console.log(this.props.onHover);
-    const classes = this.props.onHover ? "hovered-map-marker" : "map-marker";
+    const containerClasses = this.props.onHover ? "hovered-map-marker-container" : "map-marker-container";
+    const markerClasses = this.props.onHover ? "hovered-map-marker" : "map-marker";
+    const imgUrl = this.props.img;
+    const divStyle = this.props.onHover ? { backgroundImage: 'url(' + imgUrl + ')' } : {};
     return (
-      <div className={classes}></div>
+      <div className={containerClasses}>
+        <div className={markerClasses} style={divStyle}>
+          <div className="arrow-down"></div>
+        </div>
+      </div>
     );
   }
 }

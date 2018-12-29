@@ -45,6 +45,7 @@ class SimpleMap extends Component {
     return(
       <MapMarker
         onHover={(pin.id == this.state.hoveredPin.pin_id) ? true : false}
+        img={pin.photo.img_url}
         id={pin.id}
         key={pin.id}
         lat={pin.destination.latitude}
@@ -65,7 +66,7 @@ class SimpleMap extends Component {
   }
 
   static defaultProps = {
-    zoom: 12
+    zoom: 13
   };
 
   render() {
