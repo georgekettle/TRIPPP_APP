@@ -40,12 +40,69 @@ trips = [
 ]
 
 destinations = [
-  'ChIJ7YKG_u8pQAwRPK9LyPFLGrA'
+  { google_id: 'ChIJ7YKG_u8pQAwRPK9LyPFLGrA',
+    latitude: 40.5532,
+    longitude: 14.2222
+  },
+  { google_id: 'ChIJ7YKG_u8pQAwRPK9LyPFLGrA',
+    latitude: 40.5432,
+    longitude: 14.2322
+  },
+  { google_id: 'ChIJ7YKG_u8pQAwRPK9LyPFLGrA',
+    latitude: 40.5632,
+    longitude: 14.2522
+  },
+  { google_id: 'ChIJ7YKG_u8pQAwRPK9LyPFLGrA',
+    latitude: 40.5632,
+    longitude: 14.2722
+  },
+  { google_id: 'ChIJ7YKG_u8pQAwRPK9LyPFLGrA',
+    latitude: 40.5232,
+    longitude: 14.2022
+  },
+  { google_id: 'ChIJ7YKG_u8pQAwRPK9LyPFLGrA',
+    latitude: 40.5932,
+    longitude: 14.2002
+  },
+  { google_id: 'ChIJ7YKG_u8pQAwRPK9LyPFLGrA',
+    latitude: 40.5402,
+    longitude: 14.2022
+  },
+  { google_id: 'ChIJ7YKG_u8pQAwRPK9LyPFLGrA',
+    latitude: 40.5832,
+    longitude: 14.2122
+  },
+  { google_id: 'ChIJ7YKG_u8pQAwRPK9LyPFLGrA',
+    latitude: 40.4932,
+    longitude: 14.1922
+  },
+  { google_id: 'ChIJ7YKG_u8pQAwRPK9LyPFLGrA',
+    latitude: 40.5532,
+    longitude: 14.2000
+  },
+  { google_id: 'ChIJ7YKG_u8pQAwRPK9LyPFLGrA',
+    latitude: 40.5032,
+    longitude: 14.1822
+  },
+  { google_id: 'ChIJ7YKG_u8pQAwRPK9LyPFLGrA',
+    latitude: 40.5932,
+    longitude: 14.1899
+  },
+  { google_id: 'ChIJ7YKG_u8pQAwRPK9LyPFLGrA',
+    latitude: 40.5332,
+    longitude: 14.2942
+  },
+  { google_id: 'ChIJ7YKG_u8pQAwRPK9LyPFLGrA',
+    latitude: 40.5672,
+    longitude: 14.2892
+  },
 ]
 
-description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+destinations.each_with_index do |dest, index|
+  destination = Destination.create(g_places_id: dest[:google_id], latitude: dest[:latitude], longitude: dest[:longitude])
+end
 
-Destination.create(g_places_id: destinations[0])
+description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 User.create(email: 'george.kettle@icloud.com', password: '1234567', user_name: 'tessa_amberly', photo: user_photo)
 
@@ -54,6 +111,7 @@ trips.each do |trip|
 end
 
 photos.each_with_index do |photo, index|
+  destination_id = index + 1
   new_photo = Photo.create(img_url: photo)
-  Pin.create(photo_id: new_photo.id, url: photo, user_id: 1, trip_id: rand(1..2), destination_id: 1, title: captions[index], caption: description)
+  pin = Pin.create(photo_id: new_photo.id, url: photo, user_id: 1, trip_id: rand(1..2), destination_id: destination_id, title: captions[index], caption: description)
 end
