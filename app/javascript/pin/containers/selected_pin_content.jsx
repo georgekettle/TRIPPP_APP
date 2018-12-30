@@ -49,9 +49,14 @@ class SelectedPinContent extends Component {
   }
 
   handleSubmit = (e) => {
-    console.log("handle submit");
-    console.log(this.state.guideSelectorValue);
-    this.props.createPin(this.props.user_name, this.props.pinData.photo_id, this.props.pinData.trip_id, this.props.pinData.destination_id, this.props.pinData.caption);
+    this.props.createPin(
+      this.props.selectedPin.photo_id,
+      this.props.selectedPin.trip_id,
+      this.props.selectedPin.destination_id,
+      this.props.selectedPin.title,
+      this.props.selectedPin.caption,
+      this.props.selectedPin.url
+    );
   }
 
   render() {

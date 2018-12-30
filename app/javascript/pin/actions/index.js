@@ -54,10 +54,10 @@ function logToConsole(value) {
   console.log(value)
 }
 
-export function createPin(user_id, photo_id, trip_id, destination_id, title, description, pin_url) {
+export function createPin(photo_id, trip_id, destination_id, title, description, pin_url) {
   // user_name is irrelevant, could possibly change api call for creating pins
   const url = `${BASE_URL}/pins`;
-  const body = { user_id, photo_id, trip_id, destination_id, title, description, pin_url };
+  const body = { photo_id, trip_id, destination_id, title, description, pin_url };
   console.log("This is the body");
   console.log(body);
   const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
