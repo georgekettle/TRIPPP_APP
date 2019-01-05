@@ -1,1 +1,7 @@
+<% if current_user %>
+  <div id="trip" data-trip="<%= @trip %>" data-pins="<%= @pins %>"  data-currentuser="<%= current_user.to_json %>"></div>
+<% else %>
+  <div id="trip" data-trip="<%= @trip %>" data-pins="<%= @pins %>" ></div>
+<% end %>
 
+<%= javascript_pack_tag "trip" %>

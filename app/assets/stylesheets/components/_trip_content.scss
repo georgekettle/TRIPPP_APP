@@ -1,0 +1,91 @@
+.trip-content {
+  padding: 30px 10%;
+  background-color: $bg-gray;
+}
+
+.title-and-follow {
+  display: flex;
+  align-items: center;
+}
+
+.trip-title {
+  letter-spacing: -1px;
+  font-weight: 800;
+  margin: 0px;
+  margin-right: 50px;
+}
+
+.trip-show-follow-button {
+  background-image: linear-gradient(10deg, #FF6436, #FFAE8A);
+  background-color: $yellow;
+  padding: 6px 12px;
+  font-size: 0.6em;
+  letter-spacing: 1px;
+  box-shadow: 0px 4px 15px -5px #FF6346;
+}
+
+.trip-show-pin-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px -10px;
+  padding: 40px 0px;
+  padding-top: 30px;
+}
+
+.trip-pin-card {
+  width: 25%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: all 0.1s ease;
+  &:hover {
+    background-color: $light-gray;
+  }
+}
+
+.trip-pin-card:hover .guide-select {
+  display: flex;
+}
+
+.trip-information {
+  margin: 0px;
+  margin-bottom: 20px;
+}
+
+.trip-information-text {
+  font-weight: 500;
+  color: $gray;
+  font-size: 0.8em;
+}
+
+.trip-show-profile-and-guide {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 20px;
+  padding: 3px;
+  padding-right: 12px;
+  cursor: pointer;
+  background-color: white;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.trip-show-user-avatar {
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.trip-show-user-name {
+  font-size: 0.8em;
+  margin: 0px;
+  margin-bottom: 1px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}

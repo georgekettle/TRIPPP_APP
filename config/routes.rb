@@ -5,6 +5,9 @@ Rails.application.routes.draw do
         resources :pins, module: :user, only: [ :index, :create, :show ]
         resources :trips, module: :user, only: [ :index, :create, :show ]
       end
+      resources :trips, only: [] do
+        resources :pins, module: :trip, only: [ :index ]
+      end
       resources :pins, only: [ :show, :new, :create, :edit, :update ]
       resources :trips, only: [ :show, :new, :create, :edit, :update ]
       resources :photos, only: [ :create ]
