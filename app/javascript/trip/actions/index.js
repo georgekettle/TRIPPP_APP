@@ -1,9 +1,8 @@
 const BASE_URL = '/api/v1';
 
 export const FETCH_PINS = 'FETCH_PINS';
-export const PIN_CREATED = 'PIN_CREATED';
-export const PHOTO_CREATED = 'PHOTO_CREATED';
 export const PIN_HOVERED = 'PIN_HOVERED';
+export const TOGGLE_MAP = 'TOGGLE_MAP';
 
 export function fetchPins(trip_id) {
   const url = `${BASE_URL}/trips/${trip_id}/pins`;
@@ -13,6 +12,13 @@ export function fetchPins(trip_id) {
   return {
     type: FETCH_PINS,
     payload: promise // Will be resolved by redux-promise
+  };
+}
+
+export function toggleMapAction(new_state) {
+  return {
+    type: TOGGLE_MAP,
+    payload: new_state // Will be resolved by redux-promise
   };
 }
 

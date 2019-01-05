@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import PinList from './pin_list';
@@ -35,7 +34,7 @@ class TripContent extends Component {
 
 function mapStateToProps(state) {
   return {
-    selectedTrip: state.selectedTrip,
+    selectedTrip: state.selectedTrip
   };
 }
 

@@ -25,7 +25,7 @@
 }
 
 .trip-show-pin-list {
-  width: 100%;
+  width: calc(100% + 20px);
   display: flex;
   flex-wrap: wrap;
   margin: 0px -10px;

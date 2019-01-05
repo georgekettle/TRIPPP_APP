@@ -11,6 +11,7 @@ import TripShow from './containers/trip_show';
 import pinsReducer from './reducers/pins_reducer';
 import pinsListReducer from './reducers/pins_list_reducer';
 import pinHoverReducer from './reducers/pin_hover_reducer';
+import toggleMapReducer from './reducers/toggle_map_reducer';
 
 const tripContainer = document.getElementById('trip');
 const currentUser = JSON.parse(tripContainer.dataset.currentuser);
@@ -24,14 +25,16 @@ console.log(selectedTrip);
 const initialState = {
   currentUser: currentUser,
   selectedTrip: selectedTrip,
-  pins: tripPins
+  pins: tripPins,
+  toggleMap: true
 };
 
 const reducers = combineReducers({
   pins: pinsListReducer,
   hoveredPin: pinHoverReducer,
   currentUser: (state = null, action) => state,
-  selectedTrip: (state = null, action) => state
+  selectedTrip: (state = null, action) => state,
+  toggleMap: toggleMapReducer
 });
 
 const middlewares = applyMiddleware(logger, ReduxPromise);

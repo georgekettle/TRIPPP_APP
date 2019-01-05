@@ -14,6 +14,14 @@ class PinList extends Component {
     this.props.fetchPins(this.props.trip_id);
   }
 
+  componentWillReceiveProps(nextProps) {
+    // You don't have to do this check first, but it can help prevent an unneeded render
+    if (nextProps.toggleMap !== this.props.toggleMap) {
+      console.log("TRIP PIN LIST component will receive props");
+      this.render;
+    }
+  }
+
   render() {
     return (
       <Masonry
@@ -41,7 +49,8 @@ class PinList extends Component {
 
 function mapStateToProps(state) {
   return {
-    pins: state.pins
+    pins: state.pins,
+    toggleMap: state.toggleMap
   };
 }
 

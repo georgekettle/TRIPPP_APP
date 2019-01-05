@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import MapToggle from './map_toggle';
+
 class TripNav extends Component {
   constructor(props) {
     super(props);
@@ -8,6 +10,8 @@ class TripNav extends Component {
   render() {
     return (
       <div className="trip-navbar">
+        <div className="share-icon"></div>
+        <MapToggle/>
       </div>
     );
   }

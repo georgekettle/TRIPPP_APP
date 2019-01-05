@@ -6,4 +6,15 @@
   top: 60px;
   z-index: 100;
   background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 10%;
+}
+
+.share-icon {
+  height: 30px;
+  width: 30px;
+  border: 1px solid $charcoal;
+  border-radius: 50%;
 }
