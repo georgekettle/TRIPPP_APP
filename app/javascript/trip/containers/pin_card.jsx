@@ -70,10 +70,6 @@ class Pin extends Component {
     this.props.hoverPin(key);
   }
 
-  exitHoverEvent = () => {
-    this.props.hoverPin(this.props.selectedPin.id);
-  }
-
 
   render() {
     let imgUrl = this.props.pinData.photo.img_url;

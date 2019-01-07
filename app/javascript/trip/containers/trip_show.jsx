@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import TripNav from './trip_nav';
 import TripContent from './trip_content';
+import Map from './map'
 
 function RenderMap(props) {
   const renderMap = props.renderMap;
@@ -30,7 +31,7 @@ class TripShow extends Component {
           <TripContent trip_id={this.props.match.params.id}/>
         </div>
         {this.props.toggleMap &&
-          <div className="trip-show-map"/>
+          <Map trip_id={this.props.match.params.id}/>
         }
       </div>
       );

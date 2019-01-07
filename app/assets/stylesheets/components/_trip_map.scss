@@ -1,6 +1,9 @@
 .trip-show-map {
+  height: calc(100vh - 60px);
+  width: 33%;
+  position: sticky;
+  top: 60px;
   flex: 0 0 33%;
-  background-color: black;
 }
 
 .trip-show-content {
