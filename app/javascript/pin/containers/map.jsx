@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
+import { fitBounds } from 'google-map-react/utils';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -7,8 +8,36 @@ import MapMarker from './map_marker';
 import { fetchPins } from '../actions';
 import { hoverPin } from '../actions';
 
-const handleApiLoaded = (map, maps) => {
-  // use map and maps objects
+// Return map bounds based on list of places
+const getMapBounds = (map, maps, pins) => {
+  const bounds = new maps.LatLngBounds();
+
+  pins.forEach((pin) => {
+    bounds.extend(new maps.LatLng(
+      pin.destination.latitude,
+      pin.destination.longitude,
+    ));
+  });
+  return bounds;
+};
+
+// Re-center map when resizing the window
+const bindResizeListener = (map, maps, bounds) => {
+  maps.event.addDomListenerOnce(map, 'idle', () => {
+    maps.event.addDomListener(window, 'resize', () => {
+      map.fitBounds(bounds);
+    });
+  });
+};
+
+// Fit map to its bounds after the api is loaded
+const apiIsLoaded = (map, maps, pins) => {
+  // Get bounds by our pins
+  const bounds = getMapBounds(map, maps, pins);
+  // Fit map to bounds
+  map.fitBounds(bounds);
+  // Bind the resize listener
+  bindResizeListener(map, maps, bounds);
 };
 
 // Import mapStyles
@@ -87,7 +116,7 @@ class SimpleMap extends Component {
           onChildMouseLeave={this._onChildMouseLeave}
           defaultZoom={this.props.zoom}
           yesIWantToUseGoogleMapApiInternals
-          onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+          onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, this.props.pins)}
           options={mapOptions}
         >
           {this.props.pins.map(this.renderMapMarkers)}

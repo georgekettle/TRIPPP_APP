@@ -56,10 +56,6 @@ class SimpleMap extends Component {
     this.props.fetchPins(this.props.trip_id);
   }
 
-  // componentDidMount() {
-  //   this.refs.gmaps.fitBounds(bounds, size);
-  // }
-
   componentWillUpdate() {
     console.log("Map Updating");
   }
