@@ -22,10 +22,12 @@ class TripContent extends Component {
         <div className="trip-information">
           <h6 className="trip-information-text">22 Pins  |  311 Followers</h6>
         </div>
-        <div className="trip-show-profile-and-guide">
-          <div className="trip-show-user-avatar" style={avatarStyle}></div>
-          <h4 className="trip-show-user-name">{this.props.selectedTrip.user.user_name}</h4>
-        </div>
+        <a href={`http://localhost:3000/profile/${this.props.selectedTrip.user.user_name}`}>
+          <div className="trip-show-profile-and-guide">
+            <div className="trip-show-user-avatar" style={avatarStyle}></div>
+            <h4 className="trip-show-user-name">{this.props.selectedTrip.user.user_name}</h4>
+          </div>
+        </a>
         <PinList trip_id={this.props.trip_id}/>
       </div>
     );

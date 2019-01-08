@@ -1,6 +1,9 @@
+.trip-card-link {
+  width: calc(100% / 3);
+}
+
 .trip-card {
   height: 300px;
-  width: calc(100% / 3);
   border-radius: 10px;
   overflow: hidden;
   display: flex;
