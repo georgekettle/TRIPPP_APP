@@ -53,7 +53,16 @@ class Pin extends Component {
   handleSubmit = (e) => {
     console.log("handle submit");
     console.log(this.state.guideSelectorValue);
-    this.props.createPin(this.props.user_name, this.props.pinData.photo_id, this.props.pinData.trip_id, this.props.pinData.destination_id, this.props.pinData.caption);
+    const pin = this.props.pinData;
+    console.log(pin);
+    this.props.createPin(
+      pin.photo_id,
+      pin.trip_id,
+      pin.destination_id,
+      pin.title,
+      pin.caption,
+      pin.url
+    );
   }
 
   enterHoverEvent = (e) => {
@@ -95,8 +104,8 @@ class Pin extends Component {
           />
           <button className="guide-select-submit" onClick={this.handleSubmit}>Save</button>
         </div>
-        <img src={imgUrl} alt={this.props.pinData["title"]} className="pin-photo"/>
         <a href={`http://localhost:3000/pins/${pin_id}`}>
+          <img src={imgUrl} alt={this.props.pinData["title"]} className="pin-photo"/>
           <h4 className="pin-caption">{this.props.pinData["title"]}</h4>
         </a>
       </div>

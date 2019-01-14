@@ -23,12 +23,14 @@ class TripList extends Component {
     var firstFour = pins.slice(0,4);
     console.log(firstFour);
     return (
-      <div className="trip-card">
-        <div className="trip-card-photos">
-          {firstFour.map(this.renderPhoto)}
+      <a href={`http://localhost:3000/trips/${trip.id}`} className="trip-card-link">
+        <div className="trip-card">
+          <div className="trip-card-photos">
+            {firstFour.map(this.renderPhoto)}
+          </div>
+          <h4>{trip['title']}</h4>
         </div>
-        <h4>{trip['title']}</h4>
-      </div>
+      </a>
     )
   }
 

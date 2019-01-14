@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
 import { createPin } from '../actions';
+import { hoverPin } from '../actions';
 
 const selectOptions = [
   // value is the :trip_id
@@ -52,15 +53,29 @@ class Pin extends Component {
   handleSubmit = (e) => {
     console.log("handle submit");
     console.log(this.state.guideSelectorValue);
-    this.props.createPin(this.props.user_name, this.props.pinData.photo_id, this.props.pinData.trip_id, this.props.pinData.destination_id, this.props.pinData.caption);
+    const pin = this.props.pinData;
+    console.log(pin);
+    this.props.createPin(
+      pin.photo_id,
+      pin.trip_id,
+      pin.destination_id,
+      pin.title,
+      pin.caption,
+      pin.url
+    );
+  }
+
+  enterHoverEvent = (e) => {
+    const key = parseInt(e.currentTarget.dataset.key, 10);
+    this.props.hoverPin(key);
   }
 
 
   render() {
-    let imgUrl = this.props.pinData["photo"]["img_url"];
-    let pin_id = this.props.pinData["id"];
+    let imgUrl = this.props.pinData.photo.img_url;
+    let pin_id = this.props.pinData.id;
     return (
-      <div className="pin-card">
+      <div className="trip-pin-card" data-key={this.props.pinData.id} onMouseEnter={this.enterHoverEvent} onMouseLeave={this.exitHoverEvent}>
         <div className="guide-select">
           <Select
             ref="imageType"
@@ -94,8 +109,16 @@ class Pin extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ createPin }, dispatch);
+function mapStateToProps(state) {
+  return {
+    hoveredPin: state.hoveredPin
+  };
 }
 
-export default connect(null, mapDispatchToProps)(Pin);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ createPin, hoverPin }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pin);
+
+

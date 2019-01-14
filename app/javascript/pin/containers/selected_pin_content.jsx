@@ -100,9 +100,13 @@ class SelectedPinContent extends Component {
             <div className="pin-show-profile-and-guide">
               <div className="pin-show-user-avatar" style={avatarStyle}></div>
               <div className="pin-show-user-info">
-                <h4 className="pin-show-user-name">{this.props.selectedPin.user.user_name}</h4>
+                <a href={`http://localhost:3000/profile/${this.props.selectedPin.user.user_name}`}>
+                  <h4 className="pin-show-user-name">{this.props.selectedPin.user.user_name}</h4>
+                </a>
                 <h6 className="pin-show-saved-to">Saved to</h6>
-                <h6 className="pin-show-guide-name">{this.props.selectedPin.trip.title}</h6>
+                <a href={`http://localhost:3000/trips/${this.props.selectedPin.trip_id}`}>
+                  <h6 className="pin-show-guide-name">{this.props.selectedPin.trip.title}</h6>
+                </a>
               </div>
             </div>
             <button className="pin-show-follow-button">Follow</button>

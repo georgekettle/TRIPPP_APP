@@ -7,29 +7,34 @@ import logger from 'redux-logger'
 import ReduxPromise from 'redux-promise';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import PinShow from './containers/pin_show';
-import CreatePin from './containers/create_pin';
+import TripShow from './containers/trip_show';
 import pinsReducer from './reducers/pins_reducer';
 import pinsListReducer from './reducers/pins_list_reducer';
-import photosReducer from './reducers/photos_reducer';
 import pinHoverReducer from './reducers/pin_hover_reducer';
+import toggleMapReducer from './reducers/toggle_map_reducer';
 
-const pinContainer = document.getElementById('pin');
-const currentUser = JSON.parse(pinContainer.dataset.currentuser);
-console.log(JSON.parse(pinContainer.dataset.pin));
+const tripContainer = document.getElementById('trip');
+const currentUser = JSON.parse(tripContainer.dataset.currentuser);
+const selectedTrip = JSON.parse(tripContainer.dataset.trip);
+const tripPins = JSON.parse(tripContainer.dataset.pins);
+console.log("These are the pins");
+console.log(tripPins);
+console.log("The selectedTrip");
+console.log(selectedTrip);
 
 const initialState = {
-  selectedPhoto: {},
   currentUser: currentUser,
-  selectedPin: JSON.parse(pinContainer.dataset.pin)
+  selectedTrip: selectedTrip,
+  pins: tripPins,
+  toggleMap: true
 };
 
 const reducers = combineReducers({
   pins: pinsListReducer,
-  selectedPin: pinsReducer,
-  selectedPhoto: photosReducer,
   hoveredPin: pinHoverReducer,
-  currentUser: (state = null, action) => state
+  currentUser: (state = null, action) => state,
+  selectedTrip: (state = null, action) => state,
+  toggleMap: toggleMapReducer
 });
 
 const middlewares = applyMiddleware(logger, ReduxPromise);
@@ -39,11 +44,10 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route path="/pins/new" component={CreatePin} />
-        <Route path="/pins/:id" component={PinShow} />
+        <Route path="/trips/:id" component={TripShow} />
       </Switch>
     </BrowserRouter>
   </Provider>,
-  pinContainer
+  tripContainer
 );
 
