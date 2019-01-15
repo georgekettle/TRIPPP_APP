@@ -47,7 +47,7 @@ class SimpleMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hoveredPin: {}
+      hoveredPin: {pin_id: props.selectedPin.id}
     };
   }
 
@@ -130,6 +130,7 @@ class SimpleMap extends Component {
 function mapStateToProps(state) {
   return {
     pins: state.pins,
+    selectedPin: state.selectedPin,
     hoveredPin: state.hoveredPin
   };
 }

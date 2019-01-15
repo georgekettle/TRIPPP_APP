@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { fetchTrips } from '../actions';
 
@@ -23,14 +24,14 @@ class TripList extends Component {
     var firstFour = pins.slice(0,4);
     console.log(firstFour);
     return (
-      <a href={`http://localhost:3000/trips/${trip.id}`} className="trip-card-link">
+      <Link to={`/trips/${trip.id}`} className="trip-card-link">
         <div className="trip-card">
           <div className="trip-card-photos">
             {firstFour.map(this.renderPhoto)}
           </div>
           <h4>{trip['title']}</h4>
         </div>
-      </a>
+      </Link>
     )
   }
 

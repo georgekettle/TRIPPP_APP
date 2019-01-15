@@ -6,6 +6,7 @@ export const PIN_CREATED = 'PIN_CREATED';
 export const PHOTO_CREATED = 'PHOTO_CREATED';
 export const PIN_HOVERED = 'PIN_HOVERED';
 export const FETCH_TRIPS = 'FETCH_TRIPS';
+export const TOGGLE_MAP = 'TOGGLE_MAP';
 
 export function fetchPin(pin_id) {
   const url = `${BASE_URL}/pins/${pin_id}`;
@@ -18,11 +19,17 @@ export function fetchPin(pin_id) {
   };
 }
 
-export function fetchPins(user_name) {
-  const url = `${BASE_URL}/users/${user_name}/pins`;
+export function fetchPins(id, context) {
+  switch(context) {
+    case 'pin-show':
+      var url = `${BASE_URL}/users/${id}/pins`;
+      break;
+    case 'trip':
+      var url = `${BASE_URL}/trips/${id}/pins`;
+  };
+  console.log("this is the url");
   console.log(url);
   const promise = fetch(url, { credentials: "same-origin" }).then(r => r.json());
-
 
   return {
     type: FETCH_PINS,
@@ -94,6 +101,13 @@ export function fetchTrips(user_name) {
   return {
     type: FETCH_TRIPS,
     payload: promise // Will be resolved by redux-promise
+  };
+}
+
+export function toggleMapAction(new_state) {
+  return {
+    type: TOGGLE_MAP,
+    payload: new_state // Will be resolved by redux-promise
   };
 }
 

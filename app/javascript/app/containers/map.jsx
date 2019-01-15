@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
-import { fitBounds } from 'google-map-react/utils';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { fitBounds } from 'google-map-react/utils';
 
 import MapMarker from './map_marker';
 import { fetchPins } from '../actions';
 import { hoverPin } from '../actions';
+
+// Import mapStyles
+const mapStyles = require('../json/GoogleMapStyles.json');
 
 // Return map bounds based on list of places
 const getMapBounds = (map, maps, pins) => {
@@ -40,22 +43,23 @@ const apiIsLoaded = (map, maps, pins) => {
   bindResizeListener(map, maps, bounds);
 };
 
-// Import mapStyles
-const mapStyles = require('../json/GoogleMapStyles.json');
-
 class SimpleMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
       hoveredPin: {pin_id: props.selectedPin.id}
     };
-    console.log("selected pin");
-    console.log(props.selectedPin.id);
   }
 
   componentWillMount() {
     console.log("Mounting map");
-    this.props.fetchPins("tessa_amberly");
+    switch(this.props.context) {
+      case 'pin-show':
+        this.props.fetchPins(this.props.selectedPin.user.user_name, 'pin-show');
+        break;
+      case 'trip':
+        this.props.fetchPins(this.props.trip_id, 'trip');
+    };
   }
 
   componentWillUpdate() {
@@ -71,10 +75,9 @@ class SimpleMap extends Component {
   }
 
   renderMapMarkers = (pin) => {
-    console.log(pin);
     return(
       <MapMarker
-        onHover={(pin.id == this.state.hoveredPin.pin_id) ? true : false}
+        onHover={(this.state.hoveredPin == {} || (pin.id == this.state.hoveredPin.pin_id)) ? true : false}
         img={pin.photo.img_url}
         id={pin.id}
         key={pin.id}
@@ -104,13 +107,15 @@ class SimpleMap extends Component {
       styles: mapStyles // straight out of something like snazzymaps
     };
     const center = {
-      lat: this.props.selectedPin.destination.latitude,
-      lng: this.props.selectedPin.destination.longitude
+      lat: this.props.pins[0].destination.latitude,
+      lng: this.props.pins[0].destination.longitude
     };
+
     return (
       // Important! Always set the container height explicitly
-      <div style={{ height: '100%', width: '100%' }}>
+      <div className="trip-show-map">
         <GoogleMapReact
+          ref="map"
           bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY }}
           center={center}
           onChildMouseEnter={this._onChildMouseEnter}
@@ -131,6 +136,7 @@ class SimpleMap extends Component {
 function mapStateToProps(state) {
   return {
     pins: state.pins,
+    selectedPin: state.selectedPin,
     hoveredPin: state.hoveredPin
   };
 }
@@ -140,4 +146,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SimpleMap);
-

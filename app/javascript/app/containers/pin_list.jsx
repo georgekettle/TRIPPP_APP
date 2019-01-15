@@ -11,13 +11,32 @@ const masonryOptions = {
 
 class PinList extends Component {
   componentWillMount() {
-    this.props.fetchPins("tessa_amberly");
+    if(this.props.context == 'trip') {
+      this.props.fetchPins(this.props.selectedTrip.id, this.props.context);
+    } else {
+      this.props.fetchPins("tessa_amberly", 'pin-show');
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.toggleMap !== this.props.toggleMap) {
+      console.log("TRIP PIN LIST component will receive props");
+      this.render;
+    }
+  }
+
+  masonryClasses = (context) => {
+    if(this.props.context == 'trip') {
+      return 'trip-show-pin-list'
+    } else {
+      return 'explore-area-pin-list'
+    }
   }
 
   render() {
     return (
       <Masonry
-          className={'explore-area-pin-list'} // default ''
+          className={this.masonryClasses(this.props.context)} // default ''
           options={masonryOptions} // default {}
           disableImagesLoaded={false} // default false
           updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
@@ -28,6 +47,7 @@ class PinList extends Component {
               <Pin
                 key={pin.id}
                 pinData={pin}
+                context={this.props.context}
                 user_name={this.props.user_name}
                 selectedPin={this.props.selectedPin}
               />
@@ -41,7 +61,9 @@ class PinList extends Component {
 
 function mapStateToProps(state) {
   return {
-    pins: state.pins
+    pins: state.pins,
+    selectedTrip: state.selectedTrip,
+    toggleMap: state.toggleMap
   };
 }
 

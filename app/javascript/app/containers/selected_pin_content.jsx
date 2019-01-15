@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Select from 'react-select';
+import { Link } from 'react-router-dom';
 
 import { createPin } from '../actions';
 
@@ -29,6 +30,13 @@ class SelectedPinContent extends Component {
     this.state = {
       guideSelectorValue: selectOptions[0].value
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.toggleMap !== this.props.toggleMap) {
+      console.log("PIN CONTENT component will receive props");
+      this.render;
+    }
   }
 
   callback() {
@@ -59,6 +67,14 @@ class SelectedPinContent extends Component {
     );
   }
 
+  classes = (map) => {
+    if(map) {
+      return 'pin-show-pin-container'
+    } else {
+      return 'pin-show-pin-container-with-map'
+    }
+  }
+
   render() {
     let imgUrl = this.props.selectedPin["photo"]["img_url"];
     let userPhoto = this.props.selectedPin["user"]["photo"];
@@ -66,7 +82,7 @@ class SelectedPinContent extends Component {
       backgroundImage: 'url(' + userPhoto + ')'
     }
     return (
-      <div className="pin-show-pin-container">
+      <div className={this.classes(this.props.toggleMap)}>
         <div className="pin-show-photo">
           <img src={imgUrl} alt={this.props.selectedPin.caption} className="pin-photo"/>
         </div>
@@ -100,9 +116,9 @@ class SelectedPinContent extends Component {
             <div className="pin-show-profile-and-guide">
               <div className="pin-show-user-avatar" style={avatarStyle}></div>
               <div className="pin-show-user-info">
-                <a href={`http://localhost:3000/profile/${this.props.selectedPin.user.user_name}`}>
+                <Link to={`/profile/${this.props.selectedPin.user.user_name}`}>
                   <h4 className="pin-show-user-name">{this.props.selectedPin.user.user_name}</h4>
-                </a>
+                </Link>
                 <h6 className="pin-show-saved-to">Saved to</h6>
                 <a href={`http://localhost:3000/trips/${this.props.selectedPin.trip_id}`}>
                   <h6 className="pin-show-guide-name">{this.props.selectedPin.trip.title}</h6>
@@ -119,9 +135,15 @@ class SelectedPinContent extends Component {
   }
 };
 
+function mapStateToProps(state) {
+  return {
+    toggleMap: state.toggleMap
+  };
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ createPin }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(SelectedPinContent);
+export default connect(mapStateToProps, mapDispatchToProps)(SelectedPinContent);
 

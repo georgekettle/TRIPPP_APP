@@ -7,6 +7,7 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 import SimpleMap from './map';
 import SelectedPinContent from './selected_pin_content';
 import PinList from './pin_list';
+import MapToggle from './map_toggle';
 
 import { fetchPin } from '../actions/index';
 import { createPin } from '../actions';
@@ -39,15 +40,12 @@ class PinShow extends Component {
     console.log("mounting pin show");
     console.log(this.props.match.params.id);
     this.props.fetchPin(this.props.match.params.id);
+    window.scrollTo(0, 0);
   }
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
   }
-
-  // componentWillUpdate() {
-  //   console.log("pin show component updating");
-  // }
 
   componentWillReceiveProps(nextProps){
     console.log("pin show component receiving props");
@@ -57,6 +55,10 @@ class PinShow extends Component {
       console.log("RENDER NOW");
       this.props.fetchPin(nextProps.match.params.id);
       window.scrollTo(0, 0);
+    };
+    if (nextProps.toggleMap !== this.props.toggleMap) {
+      console.log("component will receive props");
+      this.render;
     }
   }
 
@@ -78,8 +80,6 @@ class PinShow extends Component {
   }
 
   renderNavItems = (item) => {
-    // var pins = trip["pins"];
-    // var firstFour = pins.slice(0,4);
     return (
       <AnchorLink href={item.id} offset='160' className="pin-show-nav-link">
         <div className={this.classes(item.class)}>
@@ -93,8 +93,11 @@ class PinShow extends Component {
     return (
       <div className="pin-show-container" onScroll={this.handleScroll}>
         <div className="pin-show-content">
-          <div className="pin-show-nav">
-            {navItems.map(this.renderNavItems)}
+          <div className="sub-navbar">
+            <div className="sub-navbar-item">
+              {navItems.map(this.renderNavItems)}
+            </div>
+            <MapToggle/>
           </div>
           <section id='this-pin'>
             <SelectedPinContent selectedPin={this.props.selectedPin}/>
@@ -104,12 +107,12 @@ class PinShow extends Component {
               <img src={exploreIcon} />
               <h5 className="page-divider-header">Explore Nearby</h5>
             </div>
-            <PinList selectedPin={this.props.selectedPin}/>
+            <PinList selectedPin={this.props.selectedPin} context="pin-show"/>
           </section>
         </div>
-        <div className="pin-show-map">
-          <SimpleMap selectedPin={this.props.selectedPin}/>
-        </div>
+        {this.props.toggleMap &&
+          <SimpleMap selectedPin={this.props.selectedPin} context="pin-show"/>
+        }
       </div>
     );
   }
@@ -118,6 +121,7 @@ class PinShow extends Component {
 function mapStateToProps(state) {
   return {
     selectedPin: state.selectedPin,
+    toggleMap: state.toggleMap
   };
 }
 

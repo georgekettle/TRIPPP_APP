@@ -33,6 +33,13 @@ class Pin extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.toggleMap !== this.props.toggleMap) {
+      console.log("PIN CARD component will receive props");
+      this.render;
+    }
+  }
+
   callback() {
     console.log("state value");
     console.log(this.state.guideSelectorValue);
@@ -74,12 +81,23 @@ class Pin extends Component {
     this.props.hoverPin(this.props.selectedPin.id);
   }
 
+  pinClasses = (context) => {
+    if(this.props.context == 'trip' && this.props.toggleMap) {
+      return 'trip-pin-card-with-map'
+    } else if(this.props.context == 'trip' && !this.props.toggleMap) {
+      return 'trip-pin-card'
+    } else if(this.props.context == 'pin-show' && this.props.toggleMap) {
+      return 'explore-area-pin-card-with-map'
+    } else if(this.props.context == 'pin-show' && !this.props.toggleMap) {
+      return 'explore-area-pin-card'
+    }
+  }
 
   render() {
     let imgUrl = this.props.pinData.photo.img_url;
     let pin_id = this.props.pinData.id;
     return (
-      <div className="explore-area-pin-card" data-key={this.props.pinData.id} onMouseEnter={this.enterHoverEvent} onMouseLeave={this.exitHoverEvent}>
+      <div className={this.pinClasses(this.props.context)} data-key={this.props.pinData.id} onMouseEnter={this.enterHoverEvent} onMouseLeave={this.exitHoverEvent}>
         <div className="guide-select">
           <Select
             ref="imageType"
@@ -115,7 +133,9 @@ class Pin extends Component {
 
 function mapStateToProps(state) {
   return {
-    hoveredPin: state.hoveredPin
+    hoveredPin: state.hoveredPin,
+    selectedPin: state.selectedPin,
+    toggleMap: state.toggleMap
   };
 }
 

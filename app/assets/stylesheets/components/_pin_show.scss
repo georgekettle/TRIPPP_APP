@@ -8,12 +8,20 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 50px;
+  padding: 50px 10%;
+  padding-bottom: 70px;
+}
+
+.pin-show-pin-container-with-map {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 20%;
   padding-bottom: 70px;
 }
 
 .pin-show-content {
-  flex: 0 0 67%;
+  flex: 1 0 67%;
 }
 
 .pin-show-photo {

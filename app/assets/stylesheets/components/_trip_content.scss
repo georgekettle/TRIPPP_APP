@@ -47,6 +47,24 @@
   }
 }
 
+.trip-pin-card-with-map {
+  width: calc(100% / 3);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: all 0.1s ease;
+  &:hover {
+    background-color: $light-gray;
+  }
+}
+
+.trip-pin-card-with-map:hover .guide-select {
+  display: flex;
+}
+
 .trip-pin-card:hover .guide-select {
   display: flex;
 }
