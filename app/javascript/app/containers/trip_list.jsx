@@ -9,11 +9,17 @@ class TripList extends Component {
     this.props.fetchTrips(this.props.user_name);
   }
 
-  renderPhoto = (pin) => {
+  renderPhoto = (pin, index) => {
     let imgUrl = pin['photo']['img_url'];
-    let divStyle = {
-      backgroundImage: 'url(' + imgUrl + ')'
-    };
+    let firstPhoto = {
+        backgroundImage: 'url(' + imgUrl + ')',
+        height: '100%',
+        borderRight: 'solid 2px white'
+      };
+    let regularPhoto = {
+        backgroundImage: 'url(' + imgUrl + ')'
+      };
+    let divStyle = (index == 0) ? firstPhoto : regularPhoto;
     return (
       <div style={divStyle} className="trip-cover-photo"></div>
     )
@@ -21,15 +27,22 @@ class TripList extends Component {
 
   renderTrip = (trip) => {
     var pins = trip["pins"];
-    var firstFour = pins.slice(0,4);
-    console.log(firstFour);
+    var firstThree = pins.slice(0,3);
+    console.log(firstThree);
     return (
       <Link to={`/trips/${trip.id}`} className="trip-card-link">
         <div className="trip-card">
           <div className="trip-card-photos">
-            {firstFour.map(this.renderPhoto)}
+            {firstThree.map(this.renderPhoto)}
           </div>
-          <h4>{trip['title']}</h4>
+          <div className="trip-card-information">
+            <div className="trip-card-title-and-pins">
+              <h4 className="trip-card-title">{trip['title']}</h4>
+              <h6 className="trip-card-pin-count">22 pins</h6>
+            </div>
+            <button className="trip-card-follow-button">Follow</button>
+          </div>
+
         </div>
       </Link>
     )
