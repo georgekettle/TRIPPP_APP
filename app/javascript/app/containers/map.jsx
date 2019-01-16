@@ -53,7 +53,13 @@ class SimpleMap extends Component {
 
   componentWillMount() {
     console.log("Mounting map");
-    this.props.fetchPins(this.props.trip_id);
+    switch(this.props.context) {
+      case 'pin-show':
+        this.props.fetchPins(this.props.selectedPin.user.user_name, 'pin-show');
+        break;
+      case 'trip':
+        this.props.fetchPins(this.props.trip_id, 'trip');
+    };
   }
 
   componentWillUpdate() {

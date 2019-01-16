@@ -53,7 +53,6 @@ export function fetchTrips(user_name) {
   console.log(url);
   const promise = fetch(url, { credentials: "same-origin" }).then(r => r.json());
 
-
   return {
     type: FETCH_TRIPS,
     payload: promise // Will be resolved by redux-promise

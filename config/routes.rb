@@ -13,13 +13,14 @@ Rails.application.routes.draw do
       resources :photos, only: [ :create ]
     end
   end
-  get "pins/new", to: "pins#show", as: 'new_pin'
-  get "pins/:pin_id", to: "pins#show", as: 'pin'
-  get "profile/:user_name", to: "profile#show", as: 'profile'
-  get "profile/:user_name/:tab", to: "profile#show"
-  resources :trips, only: [ :show ]
-  root to: 'profile#show'
 
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  root to: 'pages#home'
+  get "profile/:user_name", to: 'pages#home', as: 'profile'
+  get "profile/:user_name/:tab", to: 'pages#home'
+  get "trips/:id", to: 'pages#home'
+  get "pins/new", to: 'pages#home', as: 'new_pin'
+  get "pins/:pin_id", to: 'pages#home', as: 'pin'
 end

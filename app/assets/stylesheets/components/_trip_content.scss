@@ -22,6 +22,7 @@
   font-size: 0.6em;
   letter-spacing: 1px;
   box-shadow: 0px 4px 15px -5px #FF6346;
+  max-height: 29px;
 }
 
 .trip-show-pin-list {
@@ -45,6 +46,24 @@
   &:hover {
     background-color: $light-gray;
   }
+}
+
+.trip-pin-card-with-map {
+  width: calc(100% / 3);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: all 0.1s ease;
+  &:hover {
+    background-color: $light-gray;
+  }
+}
+
+.trip-pin-card-with-map:hover .guide-select {
+  display: flex;
 }
 
 .trip-pin-card:hover .guide-select {

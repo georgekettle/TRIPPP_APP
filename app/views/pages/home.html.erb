@@ -1,2 +1,7 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<% if current_user %>
+  <div id="app"  data-currentuser="<%= current_user.to_json %>"></div>
+<% else %>
+  <div id="app" ></div>
+<% end %>
+
+<%= javascript_pack_tag "app" %>
