@@ -90,6 +90,8 @@ class Pin extends Component {
       return 'explore-area-pin-card-with-map'
     } else if(this.props.context == 'pin-show' && !this.props.toggleMap) {
       return 'explore-area-pin-card'
+    } else if(this.props.context == 'profile') {
+      return 'pin-card'
     }
   }
 

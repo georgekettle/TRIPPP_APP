@@ -28,8 +28,10 @@ class PinList extends Component {
   masonryClasses = (context) => {
     if(this.props.context == 'trip') {
       return 'trip-show-pin-list'
-    } else {
+    } else if(this.props.context == 'pin-show') {
       return 'explore-area-pin-list'
+    } else if(this.props.context == 'profile') {
+      return 'pin-list'
     }
   }
 
