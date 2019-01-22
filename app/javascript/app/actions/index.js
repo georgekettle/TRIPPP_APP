@@ -5,6 +5,7 @@ export const FETCH_PINS = 'FETCH_PINS';
 export const PIN_CREATED = 'PIN_CREATED';
 export const PHOTO_CREATED = 'PHOTO_CREATED';
 export const PIN_HOVERED = 'PIN_HOVERED';
+export const FETCH_TRIP = 'FETCH_TRIP';
 export const FETCH_TRIPS = 'FETCH_TRIPS';
 export const TOGGLE_MAP = 'TOGGLE_MAP';
 
@@ -29,8 +30,8 @@ export function fetchPins(id, context) {
   };
   console.log("this is the url");
   console.log(url);
-  const promise = fetch(url, { credentials: "same-origin" }).then(r => r.json());
-
+  const promise = fetch(url, { credentials: "same-origin" }).then(r => r.json())
+  .then(console.log(promise));
   return {
     type: FETCH_PINS,
     payload: promise // Will be resolved by redux-promise
@@ -100,6 +101,18 @@ export function fetchTrips(user_name) {
 
   return {
     type: FETCH_TRIPS,
+    payload: promise // Will be resolved by redux-promise
+  };
+}
+
+export function fetchTrip(id) {
+  const url = `${BASE_URL}/trips/${id}`;
+  console.log(url);
+  const promise = fetch(url, { credentials: "same-origin" }).then(r => r.json())
+  .then(console.log(promise));
+
+  return {
+    type: FETCH_TRIP,
     payload: promise // Will be resolved by redux-promise
   };
 }
