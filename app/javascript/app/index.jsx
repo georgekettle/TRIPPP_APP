@@ -7,6 +7,7 @@ import logger from 'redux-logger'
 import ReduxPromise from 'redux-promise';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import NavBar from './containers/nav_bar';
 import PinShow from './containers/pin_show';
 import TripShow from './containers/trip_show';
 import Home from './components/home';
@@ -112,14 +113,17 @@ const store = createStore(reducers, initialState, middlewares);
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Switch>
-        <Route path="/profile/:user_name/:tab" component={Profile} />
-        <Route path="/profile/:user_name" component={Profile} />
-        <Route path="/trips/:id" component={TripShow} />
-        <Route path="/pins/new" component={CreatePin} />
-        <Route path="/pins/:id" component={PinShow} />
-        <Route path="/" component={Home} />
-      </Switch>
+      <div>
+        <NavBar />
+        <Switch>
+          <Route path="/profile/:user_name/:tab" component={Profile} />
+          <Route path="/profile/:user_name" component={Profile} />
+          <Route path="/trips/:id" component={TripShow} />
+          <Route path="/pins/new" component={CreatePin} />
+          <Route path="/pins/:id" component={PinShow} />
+          <Route path="/" component={Home} />
+        </Switch>
+      </div>
     </BrowserRouter>
   </Provider>,
   appContainer

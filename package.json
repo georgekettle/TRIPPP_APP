@@ -4,6 +4,7 @@
   "dependencies": {
     "@emotion/core": "^10.0.4",
     "@rails/webpacker": "3.5",
+    "axios": "^0.18.0",
     "babel-preset-react": "^6.24.1",
     "bootstrap": "3",
     "dotenv": "^6.2.0",
