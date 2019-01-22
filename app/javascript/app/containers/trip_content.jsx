@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
+
+import { fetchTrip } from '../actions/index';
 
 import PinList from './pin_list';
 
 class TripContent extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
+    console.log('TRIP CONTENT mounting');
+    this.props.fetchTrip(this.props.trip_id);
   }
 
   render() {
@@ -41,4 +49,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(TripContent);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchTrip }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TripContent);

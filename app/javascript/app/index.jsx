@@ -16,7 +16,8 @@ import pinsReducer from './reducers/pins_reducer';
 import pinsListReducer from './reducers/pins_list_reducer';
 import photosReducer from './reducers/photos_reducer';
 import pinHoverReducer from './reducers/pin_hover_reducer';
-import tripsReducer from './reducers/trips_reducer';
+import tripsListReducer from './reducers/trips_list_reducer';
+import selectedTripReducer from './reducers/selected_trip_reducer';
 import toggleMapReducer from './reducers/toggle_map_reducer';
 
 const appContainer = document.getElementById('app');
@@ -95,8 +96,8 @@ const initialState = {
 };
 
 const reducers = combineReducers({
-  selectedTrip: (state = null, action) => state,
-  trips: tripsReducer,
+  selectedTrip: selectedTripReducer,
+  trips: tripsListReducer,
   pins: pinsListReducer,
   selectedPin: pinsReducer,
   selectedPhoto: photosReducer,
