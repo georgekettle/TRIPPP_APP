@@ -22,7 +22,7 @@ import selectedTripReducer from './reducers/selected_trip_reducer';
 import toggleMapReducer from './reducers/toggle_map_reducer';
 
 const appContainer = document.getElementById('app');
-const currentUser = JSON.parse(appContainer.dataset.currentuser);
+const currentUser = (appContainer.dataset.currentuser) ? JSON.parse(appContainer.dataset.currentuser) : null;
 
 const initialState = {
   selectedPhoto: {},

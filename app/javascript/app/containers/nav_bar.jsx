@@ -22,6 +22,17 @@ class NavBar extends Component {
             </Link>
           </div>
         }
+
+        {!this.props.currentUser &&
+          <div className="navbar-right">
+            <Link to={'/login'} className="navbar-item navbar-link">
+              <h6 className="login-navbar-text">Login</h6>
+            </Link>
+            <Link to={'/signup'} className="navbar-item navbar-link">
+              <h6 className="login-navbar-text">SignUp</h6>
+            </Link>
+          </div>
+        }
       </div>
     );
   }
