@@ -8,6 +8,7 @@ export const PIN_HOVERED = 'PIN_HOVERED';
 export const FETCH_TRIP = 'FETCH_TRIP';
 export const FETCH_TRIPS = 'FETCH_TRIPS';
 export const TOGGLE_MAP = 'TOGGLE_MAP';
+export const LOGIN_USER = 'LOGIN_USER';
 
 export function fetchPin(pin_id) {
   const url = `${BASE_URL}/pins/${pin_id}`;
@@ -120,6 +121,29 @@ export function fetchTrip(id) {
 export function toggleMapAction(new_state) {
   return {
     type: TOGGLE_MAP,
+    payload: new_state // Will be resolved by redux-promise
+  };
+}
+
+export function loginUser(email, password) {
+  const url = '/users/sign_in';
+  const body = { email, password };
+  console.log("This is the body");
+  console.log(body);
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
+  const promise = fetch(url, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': csrfToken
+    },
+    credentials: 'same-origin',
+    body: JSON.stringify(body)
+  }).then(r => r.json());
+
+  return {
+    type: LOGIN_USER,
     payload: new_state // Will be resolved by redux-promise
   };
 }

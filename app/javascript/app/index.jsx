@@ -8,6 +8,8 @@ import ReduxPromise from 'redux-promise';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import NavBar from './containers/nav_bar';
+import Login from './containers/login';
+import Signup from './containers/signup';
 import PinShow from './containers/pin_show';
 import TripShow from './containers/trip_show';
 import Home from './components/home';
@@ -121,6 +123,8 @@ ReactDOM.render(
           <Route path="/trips/:id" component={TripShow} />
           <Route path="/pins/new" component={CreatePin} />
           <Route path="/pins/:id" component={PinShow} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
           <Route path="/" component={Home} />
         </Switch>
       </div>
