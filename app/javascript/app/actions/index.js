@@ -1,4 +1,5 @@
 const BASE_URL = '/api/v1';
+import history from '../history.js';
 
 export const FETCH_PIN = 'FETCH_PIN';
 export const FETCH_PINS = 'FETCH_PINS';
@@ -9,6 +10,7 @@ export const FETCH_TRIP = 'FETCH_TRIP';
 export const FETCH_TRIPS = 'FETCH_TRIPS';
 export const TOGGLE_MAP = 'TOGGLE_MAP';
 export const LOGIN_USER = 'LOGIN_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
 
 export function fetchPin(pin_id) {
   const url = `${BASE_URL}/pins/${pin_id}`;
@@ -127,7 +129,12 @@ export function toggleMapAction(new_state) {
 
 export function loginUser(email, password) {
   const url = '/users/sign_in';
-  const body = { email, password };
+  const body = {
+    user: {
+      email: email,
+      password: password
+    }
+  };
   console.log("This is the body");
   console.log(body);
   const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
@@ -140,11 +147,58 @@ export function loginUser(email, password) {
     },
     credentials: 'same-origin',
     body: JSON.stringify(body)
-  }).then(r => r.json());
+  }).then(response => {
+    if (!response.ok) {
+        console.log("Response is NOT ok");
+        console.log(response);
+        return response.json().then(json => {
+            var error = new Error(json.message);
+            error.response = response;
+            return null;
+            alert("Error logging in");
+            throw error;
+        });
+    } else {
+        console.log("Response is ok");
+        history.push('/');
+        return response.json();
+    }
+  })
 
   return {
     type: LOGIN_USER,
-    payload: new_state // Will be resolved by redux-promise
+    payload: promise // Will be resolved by redux-promise
+  };
+}
+
+export function logoutUser(user) {
+  const url = '/users/sign_out';
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
+  const promise = fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': csrfToken
+    },
+    credentials: 'same-origin',
+    body: JSON.stringify(user)
+  }).then(response => {
+    if (!response.ok) {
+        window.alert("Error logging out");
+        var text = {success:false};
+        return text;
+    } else {
+        history.push('/login');
+        window.alert("You have logged out successfully");
+        var text = {success:true};
+        return text;
+    }
+  })
+
+  return {
+    type: LOGOUT_USER,
+    payload: promise // Will be resolved by redux-promise
   };
 }
 

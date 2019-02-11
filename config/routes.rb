@@ -14,17 +14,19 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions' }
   # devise_for :users, controllers: {
   #       sessions: 'users/sessions'
   #     }
 
   root to: 'pages#home'
-  get "profile/:user_name", to: 'pages#home', as: 'profile'
-  get "profile/:user_name/:tab", to: 'pages#home'
-  get "trips/:id", to: 'pages#home'
-  get "pins/new", to: 'pages#home', as: 'new_pin'
-  get "pins/:pin_id", to: 'pages#home', as: 'pin'
-  get "login", to: 'pages#home'
-  get "signup", to: 'pages#home'
+  # get "profile/:user_name", to: 'pages#home', as: 'profile'
+  # get "profile/:user_name/:tab", to: 'pages#home'
+  # get "trips/:id", to: 'pages#home'
+  # get "pins/new", to: 'pages#home', as: 'new_pin'
+  # get "pins/:pin_id", to: 'pages#home', as: 'pin'
+  # get "login", to: 'pages#home'
+  # get "signup", to: 'pages#home'
+
+  match "*path", to: 'pages#home', via: :all
 end

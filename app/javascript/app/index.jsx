@@ -5,7 +5,8 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger'
 import ReduxPromise from 'redux-promise';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
+import history from './history';
 
 import NavBar from './containers/nav_bar';
 import Login from './containers/login';
@@ -16,6 +17,7 @@ import Home from './components/home';
 import Profile from './components/profile';
 import CreatePin from './containers/create_pin';
 import pinsReducer from './reducers/pins_reducer';
+import currentUserReducer from './reducers/current_user_reducer';
 import pinsListReducer from './reducers/pins_list_reducer';
 import photosReducer from './reducers/photos_reducer';
 import pinHoverReducer from './reducers/pin_hover_reducer';
@@ -105,7 +107,7 @@ const reducers = combineReducers({
   selectedPin: pinsReducer,
   selectedPhoto: photosReducer,
   hoveredPin: pinHoverReducer,
-  currentUser: (state = null, action) => state,
+  currentUser: currentUserReducer,
   toggleMap: toggleMapReducer
 });
 
@@ -114,7 +116,7 @@ const store = createStore(reducers, initialState, middlewares);
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router history={history}>
       <div>
         <NavBar />
         <Switch>
@@ -128,7 +130,7 @@ ReactDOM.render(
           <Route path="/" component={Home} />
         </Switch>
       </div>
-    </BrowserRouter>
+    </Router>
   </Provider>,
   appContainer
 );
