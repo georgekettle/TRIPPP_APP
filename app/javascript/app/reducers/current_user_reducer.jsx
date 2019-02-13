@@ -4,6 +4,8 @@ export default function(state = {}, action) {
       return action.payload;
     case 'LOGOUT_USER':
       return (action.payload.success) ? null : state;
+    case 'SIGNUP_USER':
+      return action.payload;
     default:
       return state;
   }

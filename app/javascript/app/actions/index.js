@@ -11,6 +11,7 @@ export const FETCH_TRIPS = 'FETCH_TRIPS';
 export const TOGGLE_MAP = 'TOGGLE_MAP';
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
+export const SIGNUP_USER = 'SIGNUP_USER';
 
 export function fetchPin(pin_id) {
   const url = `${BASE_URL}/pins/${pin_id}`;
@@ -198,6 +199,50 @@ export function logoutUser(user) {
 
   return {
     type: LOGOUT_USER,
+    payload: promise // Will be resolved by redux-promise
+  };
+}
+
+export function signupUser(user_name, email, password, password_confirmation) {
+  const url = '/users';
+  const body = {
+    user: {
+      user_name: user_name,
+      email: email,
+      password: password,
+      password_confirmation: password_confirmation
+    }
+  };
+  console.log("This is the body");
+  console.log(body);
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
+  const promise = fetch(url, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': csrfToken
+    },
+    credentials: 'same-origin',
+    body: JSON.stringify(body)
+  }).then(response => {
+    if (!response.ok) {
+        console.log("Response is NOT ok");
+        console.log(response);
+        return response.json().then(json => {
+            return null;
+            window.alert("Error signing up :(");
+        });
+    } else {
+        console.log("Response is ok");
+        history.push('/');
+        window.alert("You have successfully signed in. Woohoo!");
+        return response.json();
+    }
+  })
+
+  return {
+    type: SIGNUP_USER,
     payload: promise // Will be resolved by redux-promise
   };
 }
