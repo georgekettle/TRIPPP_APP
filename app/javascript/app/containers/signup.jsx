@@ -34,14 +34,15 @@ class Signup extends Component {
   render() {
     return (
       <div className="login-signup-container">
-        <h1>Signup</h1>
-        <form>
-          <input id="user_name" name="user_name" placeholder="user_name" onChange={this.handleChange}/>
-          <input id="email" name="email" placeholder="email" onChange={this.handleChange}/>
-          <input id="password" name="password" placeholder="password" type="password" onChange={this.handleChange}/>
-          <input id="password_confirmation" name="password_confirmation" placeholder="retype password" type="password" onChange={this.handleChange}/>
+        <h1 className="login-signup-header">Sign Up</h1>
+        <form className="login-signup-form">
+          <input id="user_name" className="login-signup-input" name="user_name" placeholder="User_Name" onChange={this.handleChange}/>
+          <input id="email" className="login-signup-input" name="email" placeholder="Email" onChange={this.handleChange}/>
+          <input id="password" className="login-signup-input" name="password" placeholder="Password" type="password" onChange={this.handleChange}/>
+          <input id="password_confirmation" className="login-signup-input" name="password_confirmation" placeholder="Retype Password" type="password" onChange={this.handleChange}/>
           <button onClick={this.handleSignup}>Signup</button>
         </form>
+        <hr className="hr-signup-login"/>
         <Link to={'/login'}>Back to Login</Link>
       </div>
     );

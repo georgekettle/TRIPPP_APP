@@ -28,12 +28,13 @@ class Login extends Component {
   render() {
     return (
       <div className="login-signup-container">
-        <h1>Login</h1>
-        <form>
-          <input id="email" name="email" placeholder="email" onChange={this.handleChange}/>
-          <input id="password" name="password" placeholder="password" type="password" onChange={this.handleChange}/>
+        <h1 className="login-signup-header">Login</h1>
+        <form className="login-signup-form">
+          <input id="email" className="login-signup-input" name="email" placeholder="Email" onChange={this.handleChange}/>
+          <input id="password" className="login-signup-input" name="password" placeholder="Password" type="password" onChange={this.handleChange}/>
           <button onClick={this.handleLogin}>Login</button>
         </form>
+        <hr className="hr-signup-login"/>
         <Link to={'/signup'}>or Signup</Link>
       </div>
     );
