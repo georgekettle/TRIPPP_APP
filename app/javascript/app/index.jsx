@@ -5,9 +5,11 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger'
 import ReduxPromise from 'redux-promise';
+import thunk from 'redux-thunk';
 import { Router, Route, Switch } from 'react-router-dom';
 import history from './history';
 
+import Main from './containers/main';
 import NavBar from './containers/nav_bar';
 import Login from './containers/login';
 import Signup from './containers/signup';
@@ -24,6 +26,7 @@ import pinHoverReducer from './reducers/pin_hover_reducer';
 import tripsListReducer from './reducers/trips_list_reducer';
 import selectedTripReducer from './reducers/selected_trip_reducer';
 import toggleMapReducer from './reducers/toggle_map_reducer';
+import alertsReducer from './reducers/alerts_reducer';
 
 const appContainer = document.getElementById('app');
 const currentUser = (appContainer.dataset.currentuser) ? JSON.parse(appContainer.dataset.currentuser) : null;
@@ -97,7 +100,14 @@ const initialState = {
   },
   trips: [
   ],
-  toggleMap: true
+  toggleMap: true,
+  alerts: [
+    // {
+    //   text: "Practice Alert",
+    //   style: '',
+    //   id: '0423491'
+    // },
+  ]
 };
 
 const reducers = combineReducers({
@@ -108,10 +118,11 @@ const reducers = combineReducers({
   selectedPhoto: photosReducer,
   hoveredPin: pinHoverReducer,
   currentUser: currentUserReducer,
-  toggleMap: toggleMapReducer
+  toggleMap: toggleMapReducer,
+  alerts: alertsReducer
 });
 
-const middlewares = applyMiddleware(logger, ReduxPromise);
+const middlewares = applyMiddleware(logger, ReduxPromise, thunk);
 const store = createStore(reducers, initialState, middlewares);
 
 ReactDOM.render(
@@ -119,6 +130,7 @@ ReactDOM.render(
     <Router history={history}>
       <div>
         <NavBar />
+        <Main />
         <Switch>
           <Route path="/profile/:user_name/:tab" component={Profile} />
           <Route path="/profile/:user_name" component={Profile} />

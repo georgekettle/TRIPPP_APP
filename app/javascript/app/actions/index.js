@@ -9,9 +9,10 @@ export const PIN_HOVERED = 'PIN_HOVERED';
 export const FETCH_TRIP = 'FETCH_TRIP';
 export const FETCH_TRIPS = 'FETCH_TRIPS';
 export const TOGGLE_MAP = 'TOGGLE_MAP';
-export const LOGIN_USER = 'LOGIN_USER';
-export const LOGOUT_USER = 'LOGOUT_USER';
-export const SIGNUP_USER = 'SIGNUP_USER';
+export const ADD_USER = 'ADD_USER';
+export const REMOVE_USER = 'REMOVE_USER';
+export const ADD_ALERT = 'ADD_ALERT';
+export const REMOVE_ALERT = 'REMOVE_ALERT';
 
 export function fetchPin(pin_id) {
   const url = `${BASE_URL}/pins/${pin_id}`;
@@ -129,121 +130,129 @@ export function toggleMapAction(new_state) {
 }
 
 export function loginUser(email, password) {
-  const url = '/users/sign_in';
-  const body = {
-    user: {
-      email: email,
-      password: password
-    }
-  };
-  console.log("This is the body");
-  console.log(body);
-  const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
-  const promise = fetch(url, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'X-CSRF-Token': csrfToken
-    },
-    credentials: 'same-origin',
-    body: JSON.stringify(body)
-  }).then(response => {
-    if (!response.ok) {
-        console.log("Response is NOT ok");
-        console.log(response);
-        return response.json().then(json => {
-            var error = new Error(json.message);
-            error.response = response;
-            return null;
-            alert("Error logging in");
-            throw error;
-        });
-    } else {
-        console.log("Response is ok");
-        history.push('/');
-        return response.json();
-    }
-  })
-
-  return {
-    type: LOGIN_USER,
-    payload: promise // Will be resolved by redux-promise
-  };
+  return (dispatch) => {
+    const url = '/users/sign_in';
+    const body = {
+      user: {
+        email: email,
+        password: password
+      }
+    };
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
+    const promise = fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(body)
+    }).then(response => {
+      if (!response.ok) {
+          console.log("Response is NOT ok");
+          console.log(response);
+          dispatch(addAlert("Wrong Email & Password Combination", "error-alert"));
+          return null;
+      } else {
+          console.log("Response is ok");
+          history.push('/');
+          dispatch(addAlert("Welcome home traveller!", "success-alert"));
+          dispatch(addUser(response.json()))
+      }
+    })
+  }
 }
 
 export function logoutUser(user) {
-  const url = '/users/sign_out';
-  const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
-  const promise = fetch(url, {
-    method: 'DELETE',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'X-CSRF-Token': csrfToken
-    },
-    credentials: 'same-origin',
-    body: JSON.stringify(user)
-  }).then(response => {
-    if (!response.ok) {
-        window.alert("Error logging out");
-        var text = {success:false};
-        return text;
-    } else {
-        history.push('/login');
-        window.alert("You have logged out successfully");
-        var text = {success:true};
-        return text;
-    }
-  })
+  return (dispatch) => {
 
-  return {
-    type: LOGOUT_USER,
-    payload: promise // Will be resolved by redux-promise
-  };
+    const url = '/users/sign_out';
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
+    const promise = fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(user)
+    }).then(response => {
+      if (!response.ok) {
+          dispatch(addAlert("Error logging out", "error-alert"));
+      } else {
+          history.push('/login');
+          dispatch(addAlert("You have logged out successfully", "success-alert"));
+          dispatch(removeUser());
+      }
+    })
+  }
 }
 
 export function signupUser(user_name, email, password, password_confirmation) {
-  const url = '/users';
-  const body = {
-    user: {
-      user_name: user_name,
-      email: email,
-      password: password,
-      password_confirmation: password_confirmation
-    }
-  };
-  console.log("This is the body");
-  console.log(body);
-  const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
-  const promise = fetch(url, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'X-CSRF-Token': csrfToken
-    },
-    credentials: 'same-origin',
-    body: JSON.stringify(body)
-  }).then(response => {
-    if (!response.ok) {
-        console.log("Response is NOT ok");
-        console.log(response);
-        return response.json().then(json => {
-            return null;
-            window.alert("Error signing up :(");
-        });
-    } else {
-        console.log("Response is ok");
-        history.push('/');
-        window.alert("You have successfully signed in. Woohoo!");
-        return response.json();
-    }
-  })
+  return (dispatch) => {
+    const url = '/users';
+    const body = {
+      user: {
+        user_name: user_name,
+        email: email,
+        password: password,
+        password_confirmation: password_confirmation
+      }
+    };
+    console.log("This is the body");
+    console.log(body);
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
+    const promise = fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(body)
+    }).then(response => {
+      if (!response.ok) {
+          console.log("Response is NOT ok");
+          console.log(response);
+          dispatch(addAlert("Error Creating your account", "error-alert"));
+      } else {
+          console.log("Response is ok");
+          history.push('/');
+          dispatch(addAlert("Welcome to Wanderrr!", "success-alert"));
+          dispatch(addUser(response.json()));
+      }
+    })
+  }
+}
 
+export function addUser(user) {
   return {
-    type: SIGNUP_USER,
-    payload: promise // Will be resolved by redux-promise
+    type: ADD_USER,
+    payload: user // Will be resolved by redux-promise
   };
 }
 
+export function removeUser() {
+  return {
+    type: REMOVE_USER,
+    payload: null // Will be resolved by redux-promise
+  };
+}
+
+export function addAlert(text, style) {
+  return {
+    type: ADD_ALERT,
+    text,
+    style
+  };
+}
+
+export function removeAlert(id) {
+  return {
+    type: REMOVE_ALERT,
+    id
+  };
+}

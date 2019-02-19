@@ -13,3 +13,35 @@
 .alert-warning {
   background: $red;
 }
+
+.success-alert {
+  width: 100%;
+  background-color: $green;
+  color: white;
+  font-size: 1em;
+  font-family: 'Montserrat';
+  font-weight: 800;
+}
+
+.error-alert {
+  width: 100%;
+  background-color: $red;
+  color: white;
+  font-size: 1em;
+  font-family: 'Montserrat';
+  font-weight: 800;
+}
+
+.alert-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.alert-close-container {
+  height: 10px;
+  width: 10px;
+  background-color: white;
+  margin-left: 10px;
+}

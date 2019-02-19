@@ -24,7 +24,9 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-promise": "^0.6.0",
-    "smoothscroll-polyfill": "^0.4.3"
+    "redux-thunk": "^2.3.0",
+    "smoothscroll-polyfill": "^0.4.3",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"

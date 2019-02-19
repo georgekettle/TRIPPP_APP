@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { signupUser } from '../actions';
+import { addAlert } from '../actions';
 
 class Signup extends Component {
   constructor(props) {
@@ -27,7 +28,8 @@ class Signup extends Component {
     if (this.state.password == this.state.password_confirmation) {
       this.props.signupUser(this.state.user_name, this.state.email, this.state.password, this.state.password_confirmation);
     } else {
-      window.alert("Oopsie. You have typed 2 different passwords");
+      this.props.addAlert("Oopsie. You have typed 2 different passwords", "error-alert");
+      // window.alert("Oopsie. You have typed 2 different passwords");
     }
   }
 
@@ -50,7 +52,7 @@ class Signup extends Component {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ signupUser }, dispatch);
+  return bindActionCreators({ signupUser, addAlert }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(Signup);
