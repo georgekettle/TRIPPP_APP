@@ -21,8 +21,10 @@ class CreatePin extends Component {
       photo: null,
       trip_id: '2',
       url: 'https://www.bontraveler.com/the-ultimate-guide-to-hvar-croatia/',
+      file: null,
       destination_id: '1',
       selectedFile: null,
+      uploadedFileCloudinaryUrl: null,
       textAreaHeight: '40px'
     };
   }
@@ -52,9 +54,13 @@ class CreatePin extends Component {
 
   readFile = (event) => {
     if (event.target.files && event.target.files[0]) {
-      var formData = new FormData();
-      formData.set('uploaded_image', event.target.files[0]);
-      this.props.createPhoto(formData)
+      this.setState({
+          file: event.target.files[0]
+      }, () => {
+          var formData  = new FormData();
+          formData.append("file", this.state.file);
+          this.props.createPhoto(formData);
+      });
     }
   }
 

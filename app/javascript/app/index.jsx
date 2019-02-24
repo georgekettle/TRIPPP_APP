@@ -13,6 +13,7 @@ import Main from './containers/main';
 import NavBar from './containers/nav_bar';
 import Login from './containers/login';
 import Signup from './containers/signup';
+import SignupProfile from './containers/signup_profile';
 import PinShow from './containers/pin_show';
 import TripShow from './containers/trip_show';
 import Home from './components/home';
@@ -101,13 +102,7 @@ const initialState = {
   trips: [
   ],
   toggleMap: true,
-  alerts: [
-    // {
-    //   text: "Practice Alert",
-    //   style: '',
-    //   id: '0423491'
-    // },
-  ]
+  alerts: []
 };
 
 const reducers = combineReducers({
@@ -139,6 +134,7 @@ ReactDOM.render(
           <Route path="/pins/:id" component={PinShow} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
+          <Route path="/signup-profile" component={SignupProfile} />
           <Route path="/" component={Home} />
         </Switch>
       </div>

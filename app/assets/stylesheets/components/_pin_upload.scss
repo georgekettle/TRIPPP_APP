@@ -74,6 +74,12 @@
   color: $charcoal;
   resize: none;
   padding: 0px;
+  &:active {
+    border: none;
+  }
+  &:focus {
+    border: none;
+  }
 }
 
 .pin-user {
@@ -128,6 +134,13 @@
   color: $charcoal;
   resize: none;
   margin-bottom: 30px;
+  padding: 0px;
+  &:active {
+    border: none;
+  }
+  &:focus {
+    border: none;
+  }
 }
 
 // LOWER RIGHT SIDE

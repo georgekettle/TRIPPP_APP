@@ -43,19 +43,21 @@ export function fetchPins(id, context) {
   };
 }
 
-export function createPhoto(formPayLoad) {
+export function createPhoto(formData) {
   // user_name is irrelevant, could possibly change api call for creating pins
+  console.log('THIS IS THE formData');
+  console.log(formData);
+  // const body = {"formData": formData};
   const url = `${BASE_URL}/photos`;
   const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
   const promise = fetch(url, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json',
       'X-CSRF-Token': csrfToken
     },
     credentials: 'same-origin',
-    body: JSON.stringify({"form": formPayLoad})
+    body: formData
   }).then(r => r.json());
 
   return {
