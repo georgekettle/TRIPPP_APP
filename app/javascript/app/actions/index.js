@@ -4,6 +4,7 @@ import history from '../history.js';
 export const FETCH_PIN = 'FETCH_PIN';
 export const FETCH_PINS = 'FETCH_PINS';
 export const PIN_CREATED = 'PIN_CREATED';
+export const NEW_PIN_CREATED = 'NEW_PIN_CREATED';
 export const PHOTO_CREATED = 'PHOTO_CREATED';
 export const PIN_HOVERED = 'PIN_HOVERED';
 export const FETCH_TRIP = 'FETCH_TRIP';
@@ -91,6 +92,42 @@ export function createPin(photo_id, trip_id, destination_id, title, description,
   return {
     type: PIN_CREATED,
     payload: promise // Will be resolved by redux-promise
+  };
+}
+
+export function createNewPin(photo_id, trip_id, destination_id, title, description, pin_url) {
+  return (dispatch) => {
+    // user_name is irrelevant, could possibly change api call for creating pins
+    const url = `${BASE_URL}/pins`;
+    const body = { photo_id, trip_id, destination_id, title, description, pin_url };
+    console.log("This is the body");
+    console.log(body);
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
+    const promise = fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(body)
+    }).then(response => {
+      if (!response.ok) {
+          dispatch(addAlert("Something went wrong when creating your pin.", "error-alert"));
+      } else {
+          console.log("Response is ok");
+          dispatch(addAlert("New pin successfully created!", "success-alert"));
+          dispatch(newPinCreated(response.json()))
+      }
+    })
+  }
+}
+
+export function newPinCreated(pin) {
+  return {
+    type: NEW_PIN_CREATED,
+    payload: pin // Will be resolved by redux-promise
   };
 }
 
