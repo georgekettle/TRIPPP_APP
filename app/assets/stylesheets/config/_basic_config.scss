@@ -40,6 +40,7 @@ input[type="file"] {
 }
 
 input, textarea {
+  box-sizing: border-box;
   color: $charcoal;
   padding: 10px;
   font-family: 'Montserrat';

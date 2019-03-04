@@ -9,7 +9,7 @@ import thunk from 'redux-thunk';
 import { Router, Route, Switch } from 'react-router-dom';
 import history from './history';
 
-import Main from './containers/main';
+import AlertMain from './containers/alert_main';
 import NavBar from './containers/nav_bar';
 import Login from './containers/login';
 import Signup from './containers/signup';
@@ -125,7 +125,7 @@ ReactDOM.render(
     <Router history={history}>
       <div>
         <NavBar />
-        <Main />
+        <AlertMain />
         <Switch>
           <Route path="/profile/:user_name/:tab" component={Profile} />
           <Route path="/profile/:user_name" component={Profile} />

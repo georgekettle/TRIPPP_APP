@@ -267,6 +267,45 @@ export function signupUser(user_name, email, password, password_confirmation) {
   }
 }
 
+export function editUser(user_name, email, profile_url, photo_id, description) {
+  return (dispatch) => {
+    const url = '/users';
+    const body = {
+      user: {
+        user_name: user_name,
+        email: email,
+        profile_url: profile_url,
+        photo_id: photo_id,
+        description: description
+      }
+    };
+    console.log("This is the body");
+    console.log(body);
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
+    const promise = fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(body)
+    }).then(response => {
+      if (!response.ok) {
+          console.log("Response is NOT ok");
+          console.log(response);
+          dispatch(addAlert("Error Updating your profile", "error-alert"));
+      } else {
+          console.log("Response is ok");
+          history.push('/');
+          dispatch(addAlert("Welcome to Wanderrr!", "success-alert"));
+          dispatch(addUser(response.json()));
+      }
+    })
+  }
+}
+
 export function addUser(user) {
   return {
     type: ADD_USER,

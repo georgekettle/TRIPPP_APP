@@ -7,10 +7,9 @@ import AlertsOverlayComponent from '../components/alerts_overlay_component';
 
 import { addAlert } from '../actions'
 
-class Main extends Component {
+class AlertMain extends Component {
   componentDidMount() {
     var {dispatch} = this.props;
-    this.props.addAlert("Test alert!", "success-alert");
   }
 
   render() {
@@ -35,4 +34,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ addAlert }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(AlertMain);
