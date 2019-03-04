@@ -17,6 +17,7 @@
   cursor: pointer;
   border-radius: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-size: cover;
@@ -31,7 +32,6 @@
   border-radius: 50%;
   height: 50px;
   width: 50px;
-  background-color: white;
   transition: all 0.1s ease;
 }
 
@@ -74,6 +74,12 @@
   color: $charcoal;
   resize: none;
   padding: 0px;
+  &:active {
+    border: none;
+  }
+  &:focus {
+    border: none;
+  }
 }
 
 .pin-user {
@@ -128,6 +134,13 @@
   color: $charcoal;
   resize: none;
   margin-bottom: 30px;
+  padding: 0px;
+  &:active {
+    border: none;
+  }
+  &:focus {
+    border: none;
+  }
 }
 
 // LOWER RIGHT SIDE

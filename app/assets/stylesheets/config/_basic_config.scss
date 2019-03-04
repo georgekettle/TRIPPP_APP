@@ -36,7 +36,33 @@ ul {
 }
 
 input[type="file"] {
-    display: none;
+  display: none;
+}
+
+input, textarea {
+  box-sizing: border-box;
+  color: $charcoal;
+  padding: 10px;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-size: 1em;
+  border: solid 2px $light-gray;
+  border-radius: 4px;
+}
+
+input:focus,
+input:active,
+textarea:focus,
+textarea:active {
+  border: solid 2px $orange;
+}
+
+// REMOVE YELLOW AUTOFILL COLOR ON INPUTS
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
 ::placeholder {
@@ -55,7 +81,7 @@ button {
   font-family: 'Montserrat';
   font-weight: 700;
   border-radius: 4px;
-  background-color: $yellow;
+  background-color: $orange;
   color: white;
   font-size: 0.8em;
   padding: 10px 20px;

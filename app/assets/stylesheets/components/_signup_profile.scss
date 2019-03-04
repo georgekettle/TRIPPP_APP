@@ -1,0 +1,66 @@
+.signup-profile-container {
+  padding: 50px 20%;
+}
+
+.signup-profile-form {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-upload-left-container {
+  flex: 0 0 40%;
+}
+
+.profile-upload-label {
+  flex: 1;
+  border-radius: 50%;
+  margin: 5px;
+  width: 80%;
+  &:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+  background-color: $light-gray;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-image: image-url("user_icon.png");
+}
+
+// RIGHT SIDE UPLOAD INFO
+
+.profile-upload-right-container {
+  flex: 0 0 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-description-input {
+  width: 100%;
+  display: block;
+  font-family: 'Montserrat';
+  color: $charcoal;
+  resize: none;
+  margin-bottom: 10px;
+  padding: 10px 15px;
+}
+
+.signup-profile-input-label {
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.profile-url-input {
+  width: 100%;
+  display: block;
+  font-family: 'Montserrat';
+  color: $charcoal;
+  resize: none;
+  padding: 10px 15px;
+}

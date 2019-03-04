@@ -4,7 +4,7 @@ export default function(state = [], action) {
       console.log("fetch pin action payload");
       console.log(action.payload);
       return action.payload;
-    case 'PIN_CREATED':
+    case 'NEW_PIN_CREATED':
       console.log(action.payload);
       return action.payload;
     default:

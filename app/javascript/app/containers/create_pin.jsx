@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Select from 'react-select';
+import history from '../history.js';
 
-import { createPin } from '../actions/index';
+import { createNewPin } from '../actions/index';
 import { createPhoto } from '../actions/index';
+
+// ASSETS
+import plusIcon from '../../../assets/images/circle-plus-icon.png';
 
 const selectOptions = [
   // value is the :trip_id
@@ -21,16 +25,25 @@ class CreatePin extends Component {
       photo: null,
       trip_id: '2',
       url: 'https://www.bontraveler.com/the-ultimate-guide-to-hvar-croatia/',
+      file: null,
       destination_id: '1',
       selectedFile: null,
-      textAreaHeight: '40px'
+      textAreaHeight: '40px',
+      uploadingPhoto: false
     };
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.selectedPin !== this.props.selectedPin) {
+      history.push(`/pins/${nextProps.selectedPin.id}`);
+    }
     // You don't have to do this check first, but it can help prevent an unneeded render
     if (nextProps.selectedPhoto.img_url !== this.state.photo) {
-      this.setState({ photo: nextProps.selectedPhoto.img_url });
+      console.log("Component will receive props");
+      this.setState({
+        photo: nextProps.selectedPhoto.img_url,
+        uploadingPhoto: false
+      });
     }
   }
 
@@ -52,27 +65,32 @@ class CreatePin extends Component {
 
   readFile = (event) => {
     if (event.target.files && event.target.files[0]) {
-      var formData = new FormData();
-      formData.set('uploaded_image', event.target.files[0]);
-      this.props.createPhoto(formData)
+      this.setState({
+          uploadingPhoto: true,
+          file: event.target.files[0]
+      }, () => {
+          var formData  = new FormData();
+          formData.append("file", this.state.file);
+          this.props.createPhoto(formData);
+      });
     }
   }
 
   handleSubmit = (e) => {
     console.log("handle submit");
     console.log(this.state);
-    this.props.createPin(
-      this.props.currentUser.id,
+    console.log(this.props.selectedPhoto.id);
+    this.props.createNewPin(
       this.props.selectedPhoto.id,
       this.state.trip_id,
       this.state.destination_id,
       this.state.title,
       this.state.description,
       this.state.url
-    );
+    )
   }
 
-  callback() {
+  callback = () => {
     console.log("state value");
     console.log(this.state.trip_id);
   }
@@ -87,9 +105,28 @@ class CreatePin extends Component {
     );
   }
 
+  renderPhotoUpload = () => {
+    if (this.state.uploadingPhoto) {
+      return (
+        <label style={{ height: '350px' }} htmlFor="upload-pin" className="pin-upload-label">
+          <div className="loader"></div>
+          <h6 className="uploading-text">Uploading...</h6>
+        </label>
+      );
+    } else {
+      const labelStyle = this.state.photo ? { height: 'unset' } : { height: '350px' };
+      const imgStyle = this.state.photo ? { display: 'block' } : { display: 'none' };
+      const plusStyle = !this.state.photo ? { display: 'block' } : { display: 'none' };
+      return (
+        <label style={labelStyle} htmlFor="upload-pin" className="pin-upload-label">
+          <img style={imgStyle} src={this.state.photo} alt="" className="uploaded-img" />
+          <img style={plusStyle} src={plusIcon} alt="" className="upload-plus" />
+        </label>
+      );
+    }
+  }
+
   render() {
-    const labelStyle = this.state.photo ? { height: 'unset' } : { height: '350px' };
-    const imgStyle = this.state.photo ? { display: 'block' } : { display: 'none' };
     const textAreaStyle = { height: this.state.textAreaHeight };
     console.log(this.state.textAreaHeight);
 
@@ -97,10 +134,7 @@ class CreatePin extends Component {
       <div className="new-pin-container">
         <div className="new-pin-form">
           <div className="upload-pin-left-container">
-            <label style={labelStyle} htmlFor="upload-pin" className="pin-upload-label">
-              <img style={imgStyle} src={this.state.photo} alt="" className="uploaded-img" />
-              <div className="upload-plus"></div>
-            </label>
+            {this.renderPhotoUpload()}
             <input type='file' id='upload-pin' onChange={this.readFile} />
             <div className="save-from-site">
               <h4>Save from Site</h4>
@@ -155,12 +189,13 @@ class CreatePin extends Component {
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
-    selectedPhoto: state.selectedPhoto
+    selectedPhoto: state.selectedPhoto,
+    selectedPin: state.selectedPin
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ createPin, createPhoto }, dispatch);
+  return bindActionCreators({ createNewPin, createPhoto }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePin);

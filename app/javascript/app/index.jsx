@@ -5,24 +5,32 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import logger from 'redux-logger'
 import ReduxPromise from 'redux-promise';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import thunk from 'redux-thunk';
+import { Router, Route, Switch } from 'react-router-dom';
+import history from './history';
 
+import AlertMain from './containers/alert_main';
 import NavBar from './containers/nav_bar';
+import Login from './containers/login';
+import Signup from './containers/signup';
+import SignupProfile from './containers/signup_profile';
 import PinShow from './containers/pin_show';
 import TripShow from './containers/trip_show';
 import Home from './components/home';
 import Profile from './components/profile';
 import CreatePin from './containers/create_pin';
 import pinsReducer from './reducers/pins_reducer';
+import currentUserReducer from './reducers/current_user_reducer';
 import pinsListReducer from './reducers/pins_list_reducer';
 import photosReducer from './reducers/photos_reducer';
 import pinHoverReducer from './reducers/pin_hover_reducer';
 import tripsListReducer from './reducers/trips_list_reducer';
 import selectedTripReducer from './reducers/selected_trip_reducer';
 import toggleMapReducer from './reducers/toggle_map_reducer';
+import alertsReducer from './reducers/alerts_reducer';
 
 const appContainer = document.getElementById('app');
-const currentUser = JSON.parse(appContainer.dataset.currentuser);
+const currentUser = (appContainer.dataset.currentuser) ? JSON.parse(appContainer.dataset.currentuser) : null;
 
 const initialState = {
   selectedPhoto: {},
@@ -93,7 +101,8 @@ const initialState = {
   },
   trips: [
   ],
-  toggleMap: true
+  toggleMap: true,
+  alerts: []
 };
 
 const reducers = combineReducers({
@@ -103,28 +112,33 @@ const reducers = combineReducers({
   selectedPin: pinsReducer,
   selectedPhoto: photosReducer,
   hoveredPin: pinHoverReducer,
-  currentUser: (state = null, action) => state,
-  toggleMap: toggleMapReducer
+  currentUser: currentUserReducer,
+  toggleMap: toggleMapReducer,
+  alerts: alertsReducer
 });
 
-const middlewares = applyMiddleware(logger, ReduxPromise);
+const middlewares = applyMiddleware(logger, ReduxPromise, thunk);
 const store = createStore(reducers, initialState, middlewares);
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router history={history}>
       <div>
         <NavBar />
+        <AlertMain />
         <Switch>
           <Route path="/profile/:user_name/:tab" component={Profile} />
           <Route path="/profile/:user_name" component={Profile} />
           <Route path="/trips/:id" component={TripShow} />
           <Route path="/pins/new" component={CreatePin} />
           <Route path="/pins/:id" component={PinShow} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/signup-profile" component={SignupProfile} />
           <Route path="/" component={Home} />
         </Switch>
       </div>
-    </BrowserRouter>
+    </Router>
   </Provider>,
   appContainer
 );
