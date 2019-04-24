@@ -1,6 +1,7 @@
 const BASE_URL = '/api/v1';
 import history from '../history.js';
 
+export const FETCH_USER = 'FETCH_USER';
 export const FETCH_PIN = 'FETCH_PIN';
 export const FETCH_PINS = 'FETCH_PINS';
 export const PIN_CREATED = 'PIN_CREATED';
@@ -14,6 +15,17 @@ export const ADD_USER = 'ADD_USER';
 export const REMOVE_USER = 'REMOVE_USER';
 export const ADD_ALERT = 'ADD_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+
+export function fetchUser(user_name) {
+  const url = `${BASE_URL}/users/${user_name}`;
+  console.log(url);
+  const promise = fetch(url, { credentials: "same-origin" }).then(r => r.json())
+  .then(console.log(promise));
+  return {
+    type: FETCH_USER,
+    payload: promise // Will be resolved by redux-promise
+  };
+}
 
 export function fetchPin(pin_id) {
   const url = `${BASE_URL}/pins/${pin_id}`;

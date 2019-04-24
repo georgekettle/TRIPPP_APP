@@ -28,13 +28,22 @@
   margin-left: 20px;
 }
 
-.profile-avatar {
+.profile-avatar-container {
   width: 200px;
   height: 200px;
   margin-top: -65px;
   border-radius: 50%;
   z-index: 1;
+  overflow: hidden;
   border: 4px solid white;
+  background-image: image-url("user_icon.png");
+  background-size: cover;
+}
+
+.profile-avatar {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .profile-name-text {

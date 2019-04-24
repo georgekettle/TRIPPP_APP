@@ -21,6 +21,7 @@ import Profile from './components/profile';
 import CreatePin from './containers/create_pin';
 import pinsReducer from './reducers/pins_reducer';
 import currentUserReducer from './reducers/current_user_reducer';
+import selectedUserReducer from './reducers/selected_user_reducer';
 import pinsListReducer from './reducers/pins_list_reducer';
 import photosReducer from './reducers/photos_reducer';
 import pinHoverReducer from './reducers/pin_hover_reducer';
@@ -35,6 +36,7 @@ const currentUser = (appContainer.dataset.currentuser) ? JSON.parse(appContainer
 const initialState = {
   selectedPhoto: {},
   currentUser: currentUser,
+  selectedUser: {},
   selectedPin: {
     caption:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     created_at:"2018-12-29T00:27:33.775Z",
@@ -113,6 +115,7 @@ const reducers = combineReducers({
   selectedPhoto: photosReducer,
   hoveredPin: pinHoverReducer,
   currentUser: currentUserReducer,
+  selectedUser: selectedUserReducer,
   toggleMap: toggleMapReducer,
   alerts: alertsReducer
 });

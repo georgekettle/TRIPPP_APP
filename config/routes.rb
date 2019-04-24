@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :pins, only: [ :show, :new, :create, :edit, :update ]
       resources :trips, only: [ :show, :new, :create, :edit, :update ]
       resources :photos, only: [ :create ]
+      resources :users, only: [ :show ], param: :user_name
     end
   end
 
