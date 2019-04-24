@@ -29,7 +29,8 @@ class CreatePin extends Component {
       destination_id: '1',
       selectedFile: null,
       textAreaHeight: '40px',
-      uploadingPhoto: false
+      uploadingPhoto: false,
+      addingLocation: false
     };
   }
 
@@ -90,6 +91,25 @@ class CreatePin extends Component {
     )
   }
 
+  toggleAddLocation = (e) => {
+    console.log("handle add location");
+    this.setState(prevState => ({
+      addingLocation: !prevState.addingLocation
+    }));
+    // this.setState({ addingLocation: true })
+  }
+
+  renderChooseLocationPortal = () => {
+    if (this.state.addingLocation) {
+      return (
+          <div className="add-location-portal">
+            <div className="add-location-bg-close" onClick={this.toggleAddLocation}></div>
+            <div className="add-location-content-div"></div>
+          </div>
+        );
+    }
+  }
+
   callback = () => {
     console.log("state value");
     console.log(this.state.trip_id);
@@ -113,7 +133,7 @@ class CreatePin extends Component {
           <h6 className="uploading-text">Uploading...</h6>
         </label>
       );
-    } else {
+    } else if (!this.state.uploadingPhoto && !this.state.photo) {
       const labelStyle = this.state.photo ? { height: 'unset' } : { height: '350px' };
       const imgStyle = this.state.photo ? { display: 'block' } : { display: 'none' };
       const plusStyle = !this.state.photo ? { display: 'block' } : { display: 'none' };
@@ -122,6 +142,15 @@ class CreatePin extends Component {
           <img style={imgStyle} src={this.state.photo} alt="" className="uploaded-img" />
           <img style={plusStyle} src={plusIcon} alt="" className="upload-plus" />
         </label>
+      );
+    } else {
+      const imgStyle = { display: 'block' };
+      return (
+        <div className="pin-uploaded-photo-div">
+          <img style={imgStyle} src={this.state.photo} alt="" className="uploaded-img" />
+          <label htmlFor="upload-pin" className="change-photo" />
+          <button onClick={this.toggleAddLocation} className="add-location-button">Add Location</button>
+        </div>
       );
     }
   }
@@ -132,6 +161,7 @@ class CreatePin extends Component {
 
     return (
       <div className="new-pin-container">
+        {this.renderChooseLocationPortal()}
         <div className="new-pin-form">
           <div className="upload-pin-left-container">
             {this.renderPhotoUpload()}

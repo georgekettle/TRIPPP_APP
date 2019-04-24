@@ -259,7 +259,7 @@ export function signupUser(user_name, email, password, password_confirmation) {
           dispatch(addAlert("Error Creating your account", "error-alert"));
       } else {
           console.log("Response is ok");
-          history.push('/');
+          history.push('/signup-profile');
           dispatch(addAlert("Welcome to Wanderrr!", "success-alert"));
           dispatch(addUser(response.json()));
       }

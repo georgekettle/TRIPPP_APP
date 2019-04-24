@@ -37,7 +37,11 @@ class NavBar extends Component {
               </div>
             </Link>
             <Link to={`/profile/${this.props.currentUser.user_name}`} className="navbar-item navbar-link">
-              <img src={this.props.currentUser.photo} className="avatar"/>
+              <div className="navbar-avatar-container">
+                {this.props.currentUser.photo &&
+                  <img src={this.props.currentUser.photo} className="avatar"/>
+                }
+              </div>
             </Link>
           </div>
         }
