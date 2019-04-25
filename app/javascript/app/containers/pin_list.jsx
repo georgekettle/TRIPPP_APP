@@ -14,7 +14,7 @@ class PinList extends Component {
     if(this.props.context == 'trip') {
       this.props.fetchPins(this.props.selectedTrip.id, this.props.context);
     } else {
-      this.props.fetchPins("tessa_amberly", 'pin-show');
+      this.props.fetchPins(this.props.user_name, 'pin-show');
     }
   }
 
