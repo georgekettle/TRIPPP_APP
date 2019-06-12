@@ -10,6 +10,7 @@ import { Router, Route, Switch } from 'react-router-dom';
 import history from './history';
 
 import AlertMain from './containers/alert_main';
+import Modal from './containers/modal';
 import NavBar from './containers/nav_bar';
 import Login from './containers/login';
 import Signup from './containers/signup';
@@ -29,6 +30,7 @@ import tripsListReducer from './reducers/trips_list_reducer';
 import selectedTripReducer from './reducers/selected_trip_reducer';
 import toggleMapReducer from './reducers/toggle_map_reducer';
 import alertsReducer from './reducers/alerts_reducer';
+import modalReducer from './reducers/modal_reducer';
 
 const appContainer = document.getElementById('app');
 const currentUser = (appContainer.dataset.currentuser) ? JSON.parse(appContainer.dataset.currentuser) : null;
@@ -104,7 +106,11 @@ const initialState = {
   trips: [
   ],
   toggleMap: true,
-  alerts: []
+  alerts: [],
+  modal: {
+    show: false,
+    modalType: 'Loading'
+  }
 };
 
 const reducers = combineReducers({
@@ -117,7 +123,8 @@ const reducers = combineReducers({
   currentUser: currentUserReducer,
   selectedUser: selectedUserReducer,
   toggleMap: toggleMapReducer,
-  alerts: alertsReducer
+  alerts: alertsReducer,
+  modal: modalReducer
 });
 
 const middlewares = applyMiddleware(logger, ReduxPromise, thunk);
@@ -129,6 +136,7 @@ ReactDOM.render(
       <div>
         <NavBar />
         <AlertMain />
+        <Modal />
         <Switch>
           <Route path="/profile/:user_name/:tab" component={Profile} />
           <Route path="/profile/:user_name" component={Profile} />

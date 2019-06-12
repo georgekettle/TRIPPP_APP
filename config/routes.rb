@@ -9,7 +9,7 @@ Rails.application.routes.draw do
         resources :pins, module: :trip, only: [ :index ]
       end
       resources :pins, only: [ :show, :new, :create, :edit, :update ]
-      resources :trips, only: [ :show, :new, :create, :edit, :update ]
+      resources :trips, only: [ :index, :show, :new, :create, :edit, :update ]
       resources :photos, only: [ :create ]
       resources :users, only: [ :show ], param: :user_name
     end

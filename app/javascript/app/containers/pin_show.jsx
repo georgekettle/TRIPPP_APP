@@ -107,7 +107,7 @@ class PinShow extends Component {
               <img src={exploreIcon} />
               <h5 className="page-divider-header">Explore Nearby</h5>
             </div>
-            <PinList selectedPin={this.props.selectedPin} context="pin-show"/>
+            <PinList selectedPin={this.props.selectedPin} user_name={this.props.selectedPin.user.user_name} context="pin-show"/>
           </section>
         </div>
         {this.props.toggleMap &&

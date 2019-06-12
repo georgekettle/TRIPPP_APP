@@ -174,9 +174,9 @@ class CreatePin extends Component {
             <div className="upload-pin-right-top">
               <textarea type="text" name="title" placeholder="Add a title" style={textAreaStyle} className="title-input" onChange={this.handleTextChange}/>
               <div className="pin-user">
-                <img src="https://instagram.fsyd5-1.fna.fbcdn.net/vp/a5a9e47acd796e82b4ae6b119dc98a71/5C938829/t51.2885-19/s320x320/44518843_273689646684456_8468654155899076608_n.jpg?_nc_ht=instagram.fsyd5-1.fna.fbcdn.net" alt={this.props.match.params.user_name} className="pin-user-avatar"/>
+                <img src={this.props.currentUser.photo} alt={this.props.match.params.user_name} className="pin-user-avatar"/>
                 <div className="pin-user-info">
-                  <h5 className="pin-user-name">Tessa Amberly</h5>
+                  <h5 className="pin-user-name">{this.props.currentUser.user_name}</h5>
                   <h6 className="pin-user-nationality">American</h6>
                 </div>
               </div>

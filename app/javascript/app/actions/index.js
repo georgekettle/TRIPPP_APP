@@ -10,11 +10,14 @@ export const PHOTO_CREATED = 'PHOTO_CREATED';
 export const PIN_HOVERED = 'PIN_HOVERED';
 export const FETCH_TRIP = 'FETCH_TRIP';
 export const FETCH_TRIPS = 'FETCH_TRIPS';
+export const FETCH_CURRENT_USER_TRIPS = 'FETCH_CURRENT_USER_TRIPS';
 export const TOGGLE_MAP = 'TOGGLE_MAP';
 export const ADD_USER = 'ADD_USER';
 export const REMOVE_USER = 'REMOVE_USER';
 export const ADD_ALERT = 'ADD_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+export const ADD_MODAL = 'ADD_MODAL';
+export const REMOVE_MODAL = 'REMOVE_MODAL';
 
 export function fetchUser(user_name) {
   const url = `${BASE_URL}/users/${user_name}`;
@@ -157,6 +160,18 @@ export function fetchTrips(user_name) {
 
   return {
     type: FETCH_TRIPS,
+    payload: promise // Will be resolved by redux-promise
+  };
+}
+
+// Created for choosing the trip (in modal) to add pin to. Thought this might be safer, so that only the current_user's trips can be selected from
+export function fetchCurrentUserTrips() {
+  const url = `${BASE_URL}/trips`;
+  console.log(url);
+  const promise = fetch(url, { credentials: "same-origin" }).then(r => r.json());
+
+  return {
+    type: FETCH_CURRENT_USER_TRIPS,
     payload: promise // Will be resolved by redux-promise
   };
 }
@@ -344,5 +359,18 @@ export function removeAlert(id) {
   return {
     type: REMOVE_ALERT,
     id
+  };
+}
+
+export function addModal(modalType) {
+  return {
+    type: ADD_MODAL,
+    modalType
+  };
+}
+
+export function removeModal() {
+  return {
+    type: REMOVE_MODAL
   };
 }

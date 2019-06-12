@@ -104,6 +104,9 @@
   border-radius: 50%;
   border: 2px solid white;
   box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+  background-image: image-url("user_icon.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .pin-user-info {

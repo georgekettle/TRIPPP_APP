@@ -1,0 +1,15 @@
+.select-guide-item {
+  border-radius: 4px;
+  background-color: white;
+  border: 0.5px solid $light-gray;
+  display: flex;
+  align-items: center;
+  min-height: 80px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.select-guide-items-container {
+  overflow: scroll;
+}

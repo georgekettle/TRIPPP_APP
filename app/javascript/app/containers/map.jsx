@@ -107,8 +107,8 @@ class SimpleMap extends Component {
       styles: mapStyles // straight out of something like snazzymaps
     };
     const center = {
-      lat: this.props.pins[0].destination.latitude,
-      lng: this.props.pins[0].destination.longitude
+      lat: this.props.selectedPin.destination.latitude,
+      lng: this.props.selectedPin.destination.longitude
     };
 
     return (
