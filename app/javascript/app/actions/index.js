@@ -11,6 +11,7 @@ export const PIN_HOVERED = 'PIN_HOVERED';
 export const FETCH_TRIP = 'FETCH_TRIP';
 export const FETCH_TRIPS = 'FETCH_TRIPS';
 export const FETCH_CURRENT_USER_TRIPS = 'FETCH_CURRENT_USER_TRIPS';
+export const FETCH_CURRENT_USER_TRIPS_FOR_MODAL = 'FETCH_CURRENT_USER_TRIPS_FOR_MODAL';
 export const TOGGLE_MAP = 'TOGGLE_MAP';
 export const ADD_USER = 'ADD_USER';
 export const REMOVE_USER = 'REMOVE_USER';
@@ -165,8 +166,9 @@ export function fetchTrips(user_name) {
 }
 
 // Created for choosing the trip (in modal) to add pin to. Thought this might be safer, so that only the current_user's trips can be selected from
-export function fetchCurrentUserTrips() {
-  const url = `${BASE_URL}/trips`;
+// NOT FOR DISPLAYING TRIPS ON CURRENT USER OWN PROFILE
+export function fetchCurrentUserTrips(pin_id) {
+  const url = `${BASE_URL}/trips/index_w_ref_to_pin/${pin_id}`;
   console.log(url);
   const promise = fetch(url, { credentials: "same-origin" }).then(r => r.json());
 
@@ -362,10 +364,11 @@ export function removeAlert(id) {
   };
 }
 
-export function addModal(modalType) {
+export function addModal(modalType, options) {
   return {
     type: ADD_MODAL,
-    modalType
+    modalType,
+    options
   };
 }
 

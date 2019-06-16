@@ -27,6 +27,7 @@ import pinsListReducer from './reducers/pins_list_reducer';
 import photosReducer from './reducers/photos_reducer';
 import pinHoverReducer from './reducers/pin_hover_reducer';
 import tripsListReducer from './reducers/trips_list_reducer';
+import currentUserTripsReducer from './reducers/current_user_trips_reducer';
 import selectedTripReducer from './reducers/selected_trip_reducer';
 import toggleMapReducer from './reducers/toggle_map_reducer';
 import alertsReducer from './reducers/alerts_reducer';
@@ -105,6 +106,7 @@ const initialState = {
   },
   trips: [
   ],
+  currentUserTrips: [],
   toggleMap: true,
   alerts: [],
   modal: {
@@ -116,6 +118,7 @@ const initialState = {
 const reducers = combineReducers({
   selectedTrip: selectedTripReducer,
   trips: tripsListReducer,
+  currentUserTrips: currentUserTripsReducer,
   pins: pinsListReducer,
   selectedPin: pinsReducer,
   selectedPhoto: photosReducer,

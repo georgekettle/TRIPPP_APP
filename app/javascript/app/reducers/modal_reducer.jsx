@@ -3,7 +3,8 @@ export default function(state = {}, action) {
     case 'ADD_MODAL':
       return {
         modalType: action.modalType,
-        show: true
+        show: true,
+        options: action.options
       };
 
     case 'REMOVE_MODAL':

@@ -21,7 +21,7 @@ class SelectedPinContent extends Component {
 
   openGuideSelectModal = (e) => {
     console.log("toggle guide select");
-    this.props.addModal('selectGuide');
+    this.props.addModal('selectGuide', this.props.selectedPin.id);
   }
 
   classes = (map) => {

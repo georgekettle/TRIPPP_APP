@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 
+import SelectGuideItem from './select_guide_item';
+
 import { fetchCurrentUserTrips } from '../actions'
 
 class SelectGuide extends Component{
@@ -10,12 +12,13 @@ class SelectGuide extends Component{
   }
 
   componentDidMount() {
-    this.props.fetchCurrentUserTrips()
+    this.props.fetchCurrentUserTrips(this.props.modal.options)
   }
 
   renderGuideList = () => {
-    const tripItems = this.props.trips.map((trip) =>
-      <div key={trip.id} className="select-guide-item">{trip.title}</div>
+    const tripItems = this.props.currentUserTrips.map((trip) =>
+      <SelectGuideItem key={trip.id} trip={trip}/>
+
     );
     return(
       <div className="select-guide-items-container">{tripItems}</div>
@@ -33,7 +36,8 @@ class SelectGuide extends Component{
 
 function mapStateToProps(state) {
   return {
-    trips: state.trips
+    currentUserTrips: state.currentUserTrips,
+    modal: state.modal
   };
 }
 
