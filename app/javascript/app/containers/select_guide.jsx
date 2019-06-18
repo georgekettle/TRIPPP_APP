@@ -18,7 +18,6 @@ class SelectGuide extends Component{
   renderGuideList = () => {
     const tripItems = this.props.currentUserTrips.map((trip) =>
       <SelectGuideItem key={trip.id} trip={trip}/>
-
     );
     return(
       <div className="select-guide-items-container">{tripItems}</div>

@@ -25,4 +25,10 @@ class Api::V1::PinsController < ApplicationController
 
   def update
   end
+
+  def add_pin_to_trip
+    @pin = Pin.find(params[:pin_id])
+    new_pin = @pin.dup
+    new_pin.update(trip_id: params[:trip_id])
+  end
 end

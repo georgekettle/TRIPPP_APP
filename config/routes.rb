@@ -5,11 +5,11 @@ Rails.application.routes.draw do
         resources :pins, module: :user, only: [ :index, :create, :show ]
         resources :trips, module: :user, only: [ :index, :create, :show ]
       end
-      # resources :trips, only: [] do
-      #   resources :pins, module: :trip, only: [ :index ]
-      # end
-      resources :pins, only: [ :show, :new, :create, :edit, :update ]
-
+      resources :pins, only: [ :show, :new, :create, :edit, :update ] do
+        collection do
+          post "add_pin_to_trip", to: 'pins#add_pin_to_trip'
+        end
+      end
       resources :trips, only: [ :index, :show, :new, :create, :edit, :update ] do
         collection do
           get "index_w_ref_to_pin/:pin_id", to: 'trips#index_w_ref_to_pin'

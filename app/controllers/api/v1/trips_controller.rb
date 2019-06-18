@@ -33,8 +33,8 @@ class Api::V1::TripsController < ApplicationController
   end
 
   def index_w_ref_to_pin
-    # set_current_user
-    @user = User.find(1)
+    set_current_user
+    # @user = User.find(1)
     trips = @user.trips.order('created_at ASC')
 
     render :json => trips.to_json(:include => { :pins => {:include =>:photo} }, :pin_id => params[:pin_id])
