@@ -5,15 +5,15 @@ class Trip < ApplicationRecord
 
   def as_json(options = {})
       json = super(options)
-      if options[:pin_id]
-        json['contains_pin?'] = contains_pin?(options[:pin_id])
+      if options[:photo_id]
+        json['contains_pin?'] = contains_pin?(options[:photo_id])
       end
       json
   end
 
   # To return true for all pins which contain the same photo_id (ie with identical pictures)
-  def contains_pin?(pin_id)
-    pin = Pin.find(pin_id)
-    !self.pins.where(photo_id: pin.photo_id).blank?
+  def contains_pin?(photo_id)
+    # pin = Pin.find(pin_id)
+    !self.pins.where(photo_id: photo_id).blank?
   end
 end

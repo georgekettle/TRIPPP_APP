@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :pins, only: [ :show, :new, :create, :edit, :update ] do
         collection do
           post "add_pin_to_trip", to: 'pins#add_pin_to_trip'
+          delete "remove_pin_from_trip", to: 'pins#remove_pin_from_trip'
         end
       end
       resources :trips, only: [ :index, :show, :new, :create, :edit, :update ] do

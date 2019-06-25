@@ -36,8 +36,9 @@ class Api::V1::TripsController < ApplicationController
     set_current_user
     # @user = User.find(1)
     trips = @user.trips.order('created_at ASC')
+    pin = Pin.find(params[:pin_id])
 
-    render :json => trips.to_json(:include => { :pins => {:include =>:photo} }, :pin_id => params[:pin_id])
+    render :json => trips.to_json(:include => { :pins => {:include =>:photo} }, :photo_id => pin.photo_id)
     # render :json => trips.to_json(:include => { :pins => {:include =>:photo} })
   end
 

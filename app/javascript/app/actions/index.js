@@ -6,6 +6,7 @@ export const FETCH_PIN = 'FETCH_PIN';
 export const FETCH_PINS = 'FETCH_PINS';
 export const PIN_CREATED = 'PIN_CREATED';
 export const NEW_PIN_CREATED = 'NEW_PIN_CREATED';
+export const PIN_ADDED_TO_TRIP = 'PIN_ADDED_TO_TRIP';
 export const PHOTO_CREATED = 'PHOTO_CREATED';
 export const PIN_HOVERED = 'PIN_HOVERED';
 export const FETCH_TRIP = 'FETCH_TRIP';
@@ -87,29 +88,65 @@ function logToConsole(value) {
   console.log(value)
 }
 
-// export function addPinToTrip(pin_id, trip_id) {
-//   // user_name is irrelevant, could possibly change api call for creating pins
-//   const url = `${BASE_URL}/pins`;
-//   const body = { pin_id, trip_id };
-//   console.log("This is the body");
-//   console.log(body);
-//   const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
-//   const promise = fetch(url, {
-//     method: 'POST',
-//     headers: {
-//       'Accept': 'application/json',
-//       'Content-Type': 'application/json',
-//       'X-CSRF-Token': csrfToken
-//     },
-//     credentials: 'same-origin',
-//     body: JSON.stringify(body)
-//   }).then(r => r.json());
+export function addPinToTrip(pin_id, trip_id) {
+  return (dispatch) => {
+    // user_name is irrelevant, could possibly change api call for creating pins
+    const url = `${BASE_URL}/pins/add_pin_to_trip`;
+    const body = { pin_id, trip_id };
+    console.log("This is the body");
+    console.log(body);
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
+    const promise = fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(body)
+    }).then(response => {
+      if (!response.ok) {
+          dispatch(addAlert("Something went wrong when creating your pin.", "error-alert"));
+      } else {
+          dispatch(addAlert("New pin successfully created!", "success-alert"));
+          dispatch(removeModal())
+          dispatch(pinAddedToTrip(response.json()))
+      }
+    })
+  }
+}
 
-//   return {
-//     type: PIN_CREATED,
-//     payload: promise // Will be resolved by redux-promise
-//   };
-// }
+export function pinAddedToTrip(trips) {
+  return {
+    type: PIN_ADDED_TO_TRIP,
+    payload: trips // Will be resolved by redux-promise
+  };
+}
+
+export function removePinFromTrip(pin_id, trip_id) {
+  // user_name is irrelevant, could possibly change api call for creating pins
+  const url = `${BASE_URL}/pins/remove_pin_from_trip`;
+  const body = { pin_id, trip_id };
+  console.log("This is the body");
+  console.log(body);
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
+  const promise = fetch(url, {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': csrfToken
+    },
+    credentials: 'same-origin',
+    body: JSON.stringify(body)
+  }).then(r => r.json());
+
+  return {
+    type: PIN_DELETED_FROM_TRIP,
+    payload: promise // Will be resolved by redux-promise
+  };
+}
 
 export function createPin(photo_id, trip_id, destination_id, title, description, pin_url) {
   // user_name is irrelevant, could possibly change api call for creating pins

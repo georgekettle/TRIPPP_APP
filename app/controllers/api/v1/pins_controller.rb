@@ -30,5 +30,15 @@ class Api::V1::PinsController < ApplicationController
     @pin = Pin.find(params[:pin_id])
     new_pin = @pin.dup
     new_pin.update(trip_id: params[:trip_id])
+    # render current_user.trips to update select guide modal
+    render :json => current_user.trips.to_json(:include => { :pins => {:include =>:photo} }, :photo_id => new_pin.photo_id)
   end
+
+  # def remove_pin_from_trip
+  #   @pin = Pin.find(params[:pin_id])
+  #   photo_id = @pin.photo_id
+  #   @pin.delete
+  #   # render current_user.trips to update select guide modal
+  #   render :json => current_user.trips.to_json(:include => { :pins => {:include =>:photo} }, :photo_id => photo_id)
+  # end
 end

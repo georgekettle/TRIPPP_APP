@@ -15,9 +15,7 @@ class Modal extends Component{
   render() {
     if(this.props.modal.show) {
         return (
-          <div>
-            <ModalContent modalType={this.props.modal.modalType}/>
-          </div>
+          <ModalContent modalType={this.props.modal.modalType}/>
         );
     } else {
       return null;
