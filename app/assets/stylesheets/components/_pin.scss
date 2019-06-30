@@ -38,10 +38,10 @@
 }
 
 .guide-select-submit {
-  width: 30%;
-  background-color: #FFC245;
+  width: 100%;
+  background-color: $orange;
   border: none;
-  border-radius: 0px 2px 2px 0px;
+  border-radius: 2px;
   color: white;
   cursor: pointer;
   font-weight: 600;
