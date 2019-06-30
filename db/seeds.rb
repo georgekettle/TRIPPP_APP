@@ -32,7 +32,7 @@ captions = [
   'A week in paradise with my husband'
 ]
 
-user_photo = "https://instagram.fsyd5-1.fna.fbcdn.net/vp/a5a9e47acd796e82b4ae6b119dc98a71/5C938829/t51.2885-19/s320x320/44518843_273689646684456_8468654155899076608_n.jpg?_nc_ht=instagram.fsyd5-1.fna.fbcdn.net"
+user_photo = "https://52f073a67e89885d8c20-b113946b17b55222ad1df26d6703a42e.ssl.cf2.rackcdn.com/_800x1000_fit_center-center/original.jpg"
 
 trips = [
   'A Day in Capri',
@@ -104,7 +104,7 @@ end
 
 description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-User.create(email: 'george.kettle@icloud.com', password: '1234567', user_name: 'tessa_amberly', photo: user_photo)
+User.create(email: 'george.kettle@icloud.com', password: '1234567', user_name: 'walter.mitty', photo: user_photo)
 
 trips.each do |trip|
   Trip.create(title: trip, user_id: 1)

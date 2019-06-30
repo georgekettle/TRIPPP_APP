@@ -26,6 +26,7 @@
 
 .uploaded-img {
   width: 100%;
+  filter: brightness(50%);
 }
 
 .upload-plus {
@@ -93,9 +94,8 @@
   margin: 15px;
   margin-left: -5px;
   transition: all 0.1s ease;
-  &:hover {
-    background-color: $bg-gray;
-  }
+  border: 0.3px solid $gray;
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.05);
 }
 
 .pin-user-avatar {
@@ -104,6 +104,9 @@
   border-radius: 50%;
   border: 2px solid white;
   box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+  background-image: image-url("user_icon.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .pin-user-info {
@@ -194,5 +197,45 @@
   display: flex;
   justify-content: flex-end;
   padding-top: 20px;
+}
+
+
+// UPLOADED PHOTO DIV
+.pin-uploaded-photo-div {
+  background-color: $light-gray;
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+}
+
+.change-photo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+  }
+}
+
+// ADD LOCATION BUTTON
+.add-location-button {
+  width: calc(100% - 20px);
+  background-color: white;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.4);
+  color: $charcoal;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
 }
 

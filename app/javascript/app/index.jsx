@@ -10,6 +10,7 @@ import { Router, Route, Switch } from 'react-router-dom';
 import history from './history';
 
 import AlertMain from './containers/alert_main';
+import Modal from './containers/modal';
 import NavBar from './containers/nav_bar';
 import Login from './containers/login';
 import Signup from './containers/signup';
@@ -21,13 +22,16 @@ import Profile from './components/profile';
 import CreatePin from './containers/create_pin';
 import pinsReducer from './reducers/pins_reducer';
 import currentUserReducer from './reducers/current_user_reducer';
+import selectedUserReducer from './reducers/selected_user_reducer';
 import pinsListReducer from './reducers/pins_list_reducer';
 import photosReducer from './reducers/photos_reducer';
 import pinHoverReducer from './reducers/pin_hover_reducer';
 import tripsListReducer from './reducers/trips_list_reducer';
+import currentUserTripsReducer from './reducers/current_user_trips_reducer';
 import selectedTripReducer from './reducers/selected_trip_reducer';
 import toggleMapReducer from './reducers/toggle_map_reducer';
 import alertsReducer from './reducers/alerts_reducer';
+import modalReducer from './reducers/modal_reducer';
 
 const appContainer = document.getElementById('app');
 const currentUser = (appContainer.dataset.currentuser) ? JSON.parse(appContainer.dataset.currentuser) : null;
@@ -35,6 +39,7 @@ const currentUser = (appContainer.dataset.currentuser) ? JSON.parse(appContainer
 const initialState = {
   selectedPhoto: {},
   currentUser: currentUser,
+  selectedUser: {},
   selectedPin: {
     caption:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     created_at:"2018-12-29T00:27:33.775Z",
@@ -101,20 +106,28 @@ const initialState = {
   },
   trips: [
   ],
+  currentUserTrips: [],
   toggleMap: true,
-  alerts: []
+  alerts: [],
+  modal: {
+    show: false,
+    modalType: 'Loading'
+  }
 };
 
 const reducers = combineReducers({
   selectedTrip: selectedTripReducer,
   trips: tripsListReducer,
+  currentUserTrips: currentUserTripsReducer,
   pins: pinsListReducer,
   selectedPin: pinsReducer,
   selectedPhoto: photosReducer,
   hoveredPin: pinHoverReducer,
   currentUser: currentUserReducer,
+  selectedUser: selectedUserReducer,
   toggleMap: toggleMapReducer,
-  alerts: alertsReducer
+  alerts: alertsReducer,
+  modal: modalReducer
 });
 
 const middlewares = applyMiddleware(logger, ReduxPromise, thunk);
@@ -126,6 +139,7 @@ ReactDOM.render(
       <div>
         <NavBar />
         <AlertMain />
+        <Modal />
         <Switch>
           <Route path="/profile/:user_name/:tab" component={Profile} />
           <Route path="/profile/:user_name" component={Profile} />

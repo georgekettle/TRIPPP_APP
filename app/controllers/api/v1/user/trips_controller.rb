@@ -3,6 +3,9 @@ class Api::V1::User::TripsController < ApplicationController
 
   def index
     trips = @user.trips.order('created_at ASC')
+    puts @user
+    puts "trips of user"
+    puts @user.trips
     # render :json => trips, :include => {:pins => {:only => :photo}}
     # render :json => trips, :include => :pins
     render :json => trips.to_json(:include => { :pins => {:include =>:photo} })

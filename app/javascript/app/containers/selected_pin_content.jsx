@@ -5,31 +5,11 @@ import Select from 'react-select';
 import { Link } from 'react-router-dom';
 
 import { createPin } from '../actions';
-
-const selectOptions = [
-  // value is the :trip_id
-  { value: 1, label: 'A Day in Capri' },
-  { value: 2, label: 'Italian Boating' }
-]
-
-const style = {
-  control: (base, state) => ({
-    ...base,
-    border: state.isFocused ? 0 : 0,
-    // This line disable the blue border
-    boxShadow: state.isFocused ? 0 : 0,
-    "&:hover": {
-      border: state.isFocused ? 0 : 0
-    }
-  })
-};
+import { addModal } from '../actions';
 
 class SelectedPinContent extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      guideSelectorValue: selectOptions[0].value
-    };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -39,32 +19,9 @@ class SelectedPinContent extends Component {
     }
   }
 
-  callback() {
-    console.log("state value");
-    console.log(this.state.guideSelectorValue);
-  }
-
-  handleChange = (e) => {
-    console.log("handle change");
-    console.log(e.value);
-    this.setState({
-      guideSelectorValue: e.value
-    },
-    this.callback
-    );
-    // console.log("state value");
-    // console.log(this.state.guideSelectorValue);
-  }
-
-  handleSubmit = (e) => {
-    this.props.createPin(
-      this.props.selectedPin.photo_id,
-      this.props.selectedPin.trip_id,
-      this.props.selectedPin.destination_id,
-      this.props.selectedPin.title,
-      this.props.selectedPin.caption,
-      this.props.selectedPin.url
-    );
+  openGuideSelectModal = (e) => {
+    console.log("toggle guide select");
+    this.props.addModal('selectGuide', this.props.selectedPin);
   }
 
   classes = (map) => {
@@ -78,9 +35,8 @@ class SelectedPinContent extends Component {
   render() {
     let imgUrl = this.props.selectedPin["photo"]["img_url"];
     let userPhoto = this.props.selectedPin["user"]["photo"];
-    const avatarStyle = {
-      backgroundImage: 'url(' + userPhoto + ')'
-    }
+    const avatarStyle = userPhoto ? { backgroundImage: 'url(' + userPhoto + ')' } : { };
+
     return (
       <div className={this.classes(this.props.toggleMap)}>
         <div className="pin-show-photo">
@@ -88,28 +44,7 @@ class SelectedPinContent extends Component {
         </div>
         <div className="pin-show-information">
           <div className="pin-show-guide-select">
-            <Select
-              ref="imageType"
-              name="guide-selector"
-              onChange={this.handleChange}
-              options={selectOptions}
-              className="basic-single"
-              classNamePrefix="select"
-              isSearchable={false}
-              defaultValue={selectOptions[0]}
-              styles={style}
-              theme={(theme) => ({
-                ...theme,
-                borderRadius: 2,
-                colors: {
-                ...theme.colors,
-                  primary50: '#FFE6B3',
-                  primary25: '#FFEECC',
-                  primary: '#FFC245',
-                },
-              })}
-            />
-            <button className="guide-select-submit" onClick={this.handleSubmit}>Save</button>
+            <button className="guide-save-button" onClick={this.openGuideSelectModal}>Save</button>
           </div>
           <h3 className="pin-show-title">{this.props.selectedPin.title}</h3>
           <div className="pin-show-profile-container">
@@ -142,7 +77,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ createPin }, dispatch);
+  return bindActionCreators({ createPin, addModal }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectedPinContent);

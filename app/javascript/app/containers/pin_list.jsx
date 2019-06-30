@@ -13,8 +13,10 @@ class PinList extends Component {
   componentWillMount() {
     if(this.props.context == 'trip') {
       this.props.fetchPins(this.props.selectedTrip.id, this.props.context);
+    } else if(this.props.context == 'pin-show' || this.props.context == 'profile') {
+      this.props.fetchPins(this.props.user_name, 'pin-show');
     } else {
-      this.props.fetchPins("tessa_amberly", 'pin-show');
+      this.props.fetchPins("george", 'pin-show');
     }
   }
 

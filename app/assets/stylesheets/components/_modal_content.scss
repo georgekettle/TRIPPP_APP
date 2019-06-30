@@ -1,0 +1,49 @@
+.modal-overlay {
+  position: fixed;
+  background-color: rgba(0,0,0,0.5);
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  z-index: 999;
+  padding: 10vh 20% 15vh 20%;
+}
+
+.modal-exit-on-click-overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+}
+
+.modal-box {
+  width: 100%;
+  height: 75vh;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.modal-close-button {
+  cursor: pointer;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $light-gray;
+  transition: all 0.1s ease;
+  transform: rotate(45deg);
+  &:hover {
+    background-color: $gray;
+  }
+}
+
+.modal-close-icon {
+  height: 51%;
+}
+
+

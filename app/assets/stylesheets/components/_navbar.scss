@@ -18,19 +18,31 @@
 }
 
 /* User Avatar */
-.react-navbar .avatar {
-  height: 31px;
-  width: 31px;
+.navbar-avatar-container {
+  height: 34px;
+  width: 34px;
   border-radius: 50%;
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
   border: 2px solid white;
   transition: all 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-image: image-url("user_icon.png");
+  background-size: cover;
   &:hover {
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.25);
-    height: 36px;
-    width: 36px;
+    height: 38px;
+    width: 38px;
     background-color: $yellow;
   }
+}
+
+.react-navbar .avatar {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .login-navbar-text {
@@ -92,7 +104,7 @@
   &:hover {
     height: 36px;
     width: 36px;
-    background-color: $yellow;
+    background-color: $orange;
   }
 }
 
