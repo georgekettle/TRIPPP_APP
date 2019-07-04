@@ -87,3 +87,12 @@ button {
   padding: 10px 20px;
   cursor: pointer;
 }
+
+.cancel-button {
+  background-color: $light-gray;
+  color: $charcoal;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1
+  }
+}

@@ -1,11 +1,18 @@
 class Api::V1::TripsController < ApplicationController
   before_action :set_trip
-  skip_before_action :set_trip, only: [:index, :index_w_ref_to_pin]
+  skip_before_action :set_trip, only: [:index, :index_w_ref_to_pin, :create]
 
   def new
   end
 
   def create
+    set_current_user
+    trip = Trip.create(
+      user_id: @user.id,
+      title: params[:title],
+      secret: params[:secret]
+      )
+    render :json => trip.to_json(:include => { :pins => {:include =>:photo} })
   end
 
   def edit

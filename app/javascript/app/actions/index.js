@@ -13,6 +13,7 @@ export const FETCH_TRIP = 'FETCH_TRIP';
 export const FETCH_TRIPS = 'FETCH_TRIPS';
 export const FETCH_CURRENT_USER_TRIPS = 'FETCH_CURRENT_USER_TRIPS';
 export const FETCH_CURRENT_USER_TRIPS_FOR_MODAL = 'FETCH_CURRENT_USER_TRIPS_FOR_MODAL';
+export const TRIP_CREATED = 'TRIP_CREATED';
 export const TOGGLE_MAP = 'TOGGLE_MAP';
 export const ADD_USER = 'ADD_USER';
 export const REMOVE_USER = 'REMOVE_USER';
@@ -110,10 +111,39 @@ export function addPinToTrip(pin_id, trip_id) {
           dispatch(addAlert("Something went wrong when creating your pin.", "error-alert"));
       } else {
           dispatch(addAlert("New pin successfully created!", "success-alert"));
-          dispatch(removeModal())
-          dispatch(pinAddedToTrip(response.json()))
+          dispatch(removeModal());
+          dispatch(pinAddedToTrip(response.json()));
       }
     })
+  }
+}
+
+export function createTripAndAddPin(title, secret, pin_id) {
+  return (dispatch) => {
+    const url = `${BASE_URL}/trips`;
+    const body = { title, secret };
+    console.log("This is the body");
+    console.log(body);
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
+    const promise = fetch(url, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify(body)
+    }).then(response => response.json())
+    .then(tripData => {
+      dispatch(addPinToTrip(pin_id, tripData.id));
+      dispatch(removeModal());
+      dispatch(addAlert("New guide successfully created!", "success-alert"));
+    })
+    .catch(function(error) {
+      console.log(error);
+      dispatch(addAlert("Something went wrong when creating your guide.", "error-alert"));
+    });
   }
 }
 
@@ -247,6 +277,29 @@ export function fetchTrip(id) {
 
   return {
     type: FETCH_TRIP,
+    payload: promise // Will be resolved by redux-promise
+  };
+}
+
+export function createTrip(title, secret) {
+  // user_name is irrelevant, could possibly change api call for creating pins
+  const url = `${BASE_URL}/trips`;
+  const body = { title, secret };
+  console.log("This is the body");
+  console.log(body);
+  const csrfToken = document.querySelector('meta[name="csrf-token"]').attributes.content.value;
+  const promise = fetch(url, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': csrfToken
+    },
+    credentials: 'same-origin',
+    body: JSON.stringify(body)
+  }).then(r => r.json());
+  return {
+    type: TRIP_CREATED,
     payload: promise // Will be resolved by redux-promise
   };
 }
