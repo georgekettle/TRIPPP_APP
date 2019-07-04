@@ -1,0 +1,81 @@
+.create-guide-modal-input {
+  padding: 20px 15%;
+  border-bottom: 1px solid $light-gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.create-guide-modal-cancel-create-container {
+  padding: 20px 15%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.create-guide-modal-title {
+  padding-right: 50px;
+}
+
+.create-guide-modal-title-input {
+  border: 2px solid $light-gray;
+  border-radius: 5px;
+  min-height: 50px;
+  padding: 0px 15px;
+  font-size: 1em;
+  font-family: 'Montserrat';
+  color: $charcoal;
+  font-weight: 500;
+  width: 100%;
+  box-sizing: border-box;
+  flex: 0 0 80%;
+  &:active {
+    border-color: $orange;
+  };
+  &:focus {
+    border-color: $orange;
+  }
+}
+
+.create-guide-modal-secret-checkbox-container {
+  flex: 0 0 80%;
+  display: flex;
+  align-items: center;
+}
+
+.create-guide-modal-secret-checkbox {
+  height: 30px;
+  width: 30px;
+  border-radius: 4px;
+  border: 2px solid $light-gray;
+  cursor: pointer;
+}
+
+.create-guide-modal-secret-checkbox-checked {
+  height: 30px;
+  width: 30px;
+  border-radius: 4px;
+  background-color: $orange;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-guide-tick-icon {
+  height: 15px;
+}
+
+.create-guide-modal-secret-checkbox-text {
+  margin-left: 15px;
+}
+
+.create-guide-modal-secret-checkbox-h6 {
+  font-size: 0.8em;
+  margin: 0px;
+}
+
+.create-guide-modal-secret-checkbox-learn-more {
+  margin: 0px;
+  margin-top: 3px;
+}

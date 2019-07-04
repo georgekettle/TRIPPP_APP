@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import { removeModal } from '../actions'
 
 import SelectGuide from './select_guide';
+import CreateGuideModal from './create_guide_modal';
 
 class ModalContent extends Component{
   removeModal = () => {
@@ -17,7 +18,7 @@ class ModalContent extends Component{
     if(modalType == "selectGuide") {
       return <SelectGuide />
     } else if(modalType == "createGuide") {
-      return <h1>Create Guide</h1>
+      return <CreateGuideModal />
     } else {
       return <h1>Loading...</h1>
     }

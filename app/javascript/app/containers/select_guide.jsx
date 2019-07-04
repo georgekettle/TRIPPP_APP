@@ -6,7 +6,7 @@ import plusIcon from '../../../assets/images/plus-icon-white.svg';
 
 import SelectGuideItem from './select_guide_item';
 
-import { fetchCurrentUserTrips, removeModal } from '../actions'
+import { fetchCurrentUserTrips, removeModal, addModal } from '../actions'
 
 class SelectGuide extends Component{
   constructor(props) {
@@ -15,6 +15,11 @@ class SelectGuide extends Component{
 
   removeModal = () => {
     this.props.removeModal()
+  }
+
+  openCreateGuideModal = () => {
+    console.log("open create guide modal");
+    this.props.addModal('createGuide', this.props.modal.options);
   }
 
   componentDidMount() {
@@ -50,7 +55,7 @@ class SelectGuide extends Component{
           </div>
           <div className="select-guide-items-and-create-guide-container">
             {this.renderGuideList()}
-            <div className="select-guide-create-trip-button">
+            <div className="select-guide-create-trip-button" onClick={this.openCreateGuideModal}>
               <div className="select-guide-create-new-guide">
                 <img src={plusIcon} className="create-guide-plus-icon"/>
               </div>
@@ -71,7 +76,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchCurrentUserTrips, removeModal }, dispatch);
+  return bindActionCreators({ fetchCurrentUserTrips, removeModal, addModal }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectGuide);

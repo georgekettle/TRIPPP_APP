@@ -5,9 +5,15 @@ import {connect} from 'react-redux';
 import { addPinToTrip } from '../actions';
 
 function GuideItem(props) {
-  var backgroundImgStyle = {
-    backgroundImage: `url(${props.trip.pins[0].photo.img_url})`
-  };
+  const isPins = props.trip.pins[0];
+  if (isPins) {
+    var backgroundImgStyle = {
+      backgroundImage: `url(${props.trip.pins[0].photo.img_url})`
+    };
+  }
+  // var backgroundImgStyle = {
+  //   backgroundImage: `url(${props.trip.pins[0].photo.img_url})`
+  // };
   return (
     <div className="select-guide-item" onClick={props.addPinToTrip}>
       <div className="select-guide-item-photo-and-title">
